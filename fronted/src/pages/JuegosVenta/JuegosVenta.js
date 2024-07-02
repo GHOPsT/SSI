@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../../common/header/header';
 import CarritoCompras from '../CarritoCompras';
+import './style.css'; // Importa el archivo de estilos
+
 
 
 const JuegosPorCategoria = () => {
@@ -83,13 +85,14 @@ const JuegosPorCategoria = () => {
   };
 
   return (
-    <div className="venta-usados">
+    <div>
       <Header
         juegosSeleccionados={juegosSeleccionados}
         onRemoverJuego={handleRemoverJuego}
         isComprasDropdownVisible={isDropdownVisible}
         setIsComprasDropdownVisible={setIsDropdownVisible}
       />
+    <div className="venta-usados">
       <div className="div">
         <div className="frame">
           <h1>Juegos Usados</h1>
@@ -119,6 +122,7 @@ const JuegosPorCategoria = () => {
             setIsComprasDropdownVisible={setIsDropdownVisible}
           />
         )}
+    </div>
     </div>
   );
 };

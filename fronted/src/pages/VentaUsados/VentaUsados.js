@@ -81,8 +81,6 @@ const VentaUsados = () => {
       .catch(error => console.error('Error updating selected games:', error));
   };
 
-  console.log(carritoKey);
-
   return (
     <div>
       <Header

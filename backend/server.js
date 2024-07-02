@@ -277,7 +277,7 @@ app.post('/juegos-seleccionados', (req, res) => {
 
 // Endpoint para eliminar todos los datos del archivo JSON
 app.delete('/juegos-seleccionados', (req, res) => {
-  fs.writeFile(filePath, '[]', (err) => {
+  fs.writeFile(filePath, '', (err) => {
       if (err) {
           return res.status(500).send('Error writing file');
       }
@@ -313,6 +313,57 @@ app.post('/guardar-compra', (req, res) => {
       res.json({ message: 'Compra guardada correctamente' });
     });
   });
+});
+
+app.get('/historial/:usuario_id', (req, res) => {
+  const { usuario_id } = req.params;
+
+  const SQL = `
+    SELECT 
+      p.pedido_id,
+      p.fecha,
+      j.titulo,
+      d.cantidad,
+      j.precio,
+      c.nombre AS categoria,
+      e.nombre AS estado
+    FROM pedido p
+    JOIN detalle d ON p.pedido_id = d.pedido_id
+    JOIN juegos j ON d.juego_id = j.juego_id
+    JOIN categorias c ON j.categoria_id = c.categoria_id
+    JOIN estado e ON j.estado_id = e.estado_id
+    WHERE p.usuario_id = ?
+  `;
+
+  DB.query(SQL, [usuario_id], (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).json({ error: 'Error executing query' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+app.get('/buscar', async (req, res) => {
+  const { titulo } = req.query;
+  if (!titulo) {
+    return res.status(400).json({ error: 'Se requiere un título para la búsqueda' });
+  }
+
+  try {
+    const query = `
+      SELECT * FROM juegos
+      WHERE LOWER(titulo) LIKE LOWER($1)
+    `;
+    const values = [`%${titulo}%`];
+    const result = await pool.query(query, values);
+
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error al buscar juegos:', error);
+    res.status(500).json({ error: 'Error al buscar juegos' });
+  }
 });
 
 

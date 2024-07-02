@@ -24,7 +24,7 @@ const IniciarSesion = () => {
       });
       const data = await response.json();
       if (data.usuario_id) {
-        GuardarUsuario(data.usuario_id); // Guarda el usuario_id en localStorage
+        GuardarUsuario(data.usuario_id); 
         navigate('/inicio'); // Redirige a la página de inicio
       } else {
         alert('Nombre de usuario o contraseña incorrectos');
@@ -34,7 +34,7 @@ const IniciarSesion = () => {
       alert('Error en la solicitud');
     }
   };
-  
+
   return (
     <div className="iniciar-sesin">
       <div className="group-wrapper">

@@ -1,5 +1,5 @@
 // src/pages/IniciarSesion/IniciarSesion.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import imagenes from './imagenes';
 import './globals.css';
@@ -7,7 +7,6 @@ import './style.css';
 import Header from '../../common/header/header.js';
 import GuardarUsuario from '../IniciarSesion/UsuarioGuardado.js';
 import useCarrito from '../auxiliar.js';
-import CarritoCompras from '../CarritoCompras.js';
 import axios from 'axios';
 
 
@@ -36,6 +35,10 @@ const PagoConTarjetas = () => {
       });
 
       console.log(response.data); // Mensaje de éxito desde el backend
+      axios.delete('http://localhost:3001/juegos-seleccionados')
+        .then(response => console.log(response.data))
+        .catch(error => console.error('Error deleting selected games:', error));
+
       // Redirigir o hacer otras acciones después de guardar la compra
     } catch (error) {
       console.error('Error al guardar la compra:', error);
@@ -44,6 +47,14 @@ const PagoConTarjetas = () => {
   };
   
   return (
+    <div>
+      <Header
+        juegosSeleccionados={juegosSeleccionados}
+        onRemoverJuego={handleRemoverJuego}
+        isComprasDropdownVisible={isDropdownVisible}
+        setIsComprasDropdownVisible={setIsDropdownVisible}
+      />
+
     <div class="pago-con-tarjeta">
       <div class="div">
         <div class="overlap">
@@ -145,6 +156,8 @@ const PagoConTarjetas = () => {
         </div>
         
       </div>
+
+    </div>
     </div>
   );
 };

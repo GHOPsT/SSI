@@ -24,31 +24,39 @@ import MaybeShowFooter from "./common/MaybeShowFooter/MaybeShowFooter.js";
 import Footer from "./common/footer/footer.js";
 import HistorialDeCompras from './pages/HistorialDeCompras/HistorialDeCompras.js';
 import JuegosPorCategoria from "./pages/JuegosVenta/JuegosVenta.js";
+import ProtectedRoute from './pages/ProtectedRoutes.js';
 
 function App() {
   
   return (
     <Router>
       <Routes>
-        <Route path="/detalle-producto/:juego_id" element={<DetalleProducto />} />
-        <Route path="/juegos-por-categoria/:categoria_id" element={<JuegosPorCategoria />} />
+        <Route path="/detalle-producto/:juego_id" element={<ProtectedRoute><DetalleProducto /></ProtectedRoute>} />
+        <Route path="/juegos-por-categoria/:categoria_id" element={<ProtectedRoute><JuegosPorCategoria /></ProtectedRoute>} />
         <Route path="/configuraciones" element={<SaveImage />} />
-        <Route path="/carrito-compras" element={<DetalleCompras />} />
-        <Route path="/detalle-producto-usado" element={<DetalleProductoUsado />} />
-        <Route path="/detalle-producto" element={<DetalleProducto />} />
-        <Route path="/compra-exitosa" element={<CompraExitosa />} />
-        <Route path="/pago-tarjetas" element={<PagoConTarjetas />} />
-        <Route path="/venta-codigo" element={<VentaCodigo />} />
-        <Route path="/pantalla-venta" element={<PantallaDesplegableVenta />} />
-        <Route path="/venta-funcionalidad" element={<VentaFuncionalidadDelCodigo />} />
-        <Route path="/venta-final" element={<VentaFinal />} />
-        <Route path="/venta-datos" element={<VentaDatos />} />
-        <Route path="/venta-usados" element={<VentaUsados />} />
-        <Route path="/venta-nuevos" element={<NuevosJuegos />} />
-        <Route path="/registrarse" element={<Registrarse />} />
-        <Route path="/historial" element={<HistorialDeCompras />} />
+        <Route path="/carrito-compras" element={<ProtectedRoute><DetalleCompras /></ProtectedRoute>} />
+        <Route path="/detalle-producto-usado" element={<ProtectedRoute><DetalleProductoUsado /></ProtectedRoute>} />
+        <Route path="/detalle-producto" element={<ProtectedRoute><DetalleProducto /></ProtectedRoute>} />
+        <Route path="/compra-exitosa" element={<ProtectedRoute><CompraExitosa /></ProtectedRoute>} />
+        <Route path="/pago-tarjetas" element={<ProtectedRoute><PagoConTarjetas /></ProtectedRoute>} />
+        <Route path="/venta-codigo" element={<ProtectedRoute><VentaCodigo /></ProtectedRoute>} />
+        <Route path="/pantalla-venta" element={<ProtectedRoute><PantallaDesplegableVenta /></ProtectedRoute>} />
+        <Route path="/venta-funcionalidad" element={<ProtectedRoute><VentaFuncionalidadDelCodigo /></ProtectedRoute>} />
+        <Route path="/venta-final" element={<ProtectedRoute><VentaFinal /></ProtectedRoute>} />
+        <Route path="/venta-datos" element={<ProtectedRoute><VentaDatos /></ProtectedRoute>} />
+        <Route path="/venta-usados" element={<ProtectedRoute><VentaUsados /></ProtectedRoute>} />
+        <Route path="/venta-nuevos" element={<ProtectedRoute><NuevosJuegos /></ProtectedRoute>} />
+        <Route path="/registrarse" element={<ProtectedRoute><Registrarse /></ProtectedRoute>} />
+        <Route path="/historial" element={<ProtectedRoute><HistorialDeCompras /></ProtectedRoute>} />
         <Route path="/iniciar-sesion" element={<IniciarSesion />} />
-        <Route path="/inicio" element={<Inicio />} />
+        <Route
+          path="/inicio"
+          element={
+            <ProtectedRoute>
+              <Inicio />
+            </ProtectedRoute>
+          }
+        />        
         <Route path="/" element={<IniciarSesion />} />
       </Routes>
       <MaybeShowFooter>

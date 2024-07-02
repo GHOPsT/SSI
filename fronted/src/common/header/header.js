@@ -5,6 +5,7 @@ import axios from 'axios';
 import './globals.css';
 import './style.css';
 import imagenes from "./imagenes";
+import GuardarUsuario from '../../pages/IniciarSesion/UsuarioGuardado.js';
 
 
 const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdownVisible, setIsComprasDropdownVisible }) => {
@@ -59,13 +60,11 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
     }
   };
 
-  const toggleVentasDropdown = () => {
-    setIsVentasDropdownVisible(!isVentasDropdownVisible);
-    if (isComprasDropdownVisible) {
-      setIsComprasDropdownVisible(false);
-    }
-  };
-
+  const handleCerrarSesion = () => {
+    axios.delete('http://localhost:3001/juegos-seleccionados')
+      .then(response => console.log(response.data))
+      .catch(error => console.error('Error deleting selected games:', error));
+  }
   const actualizarJuegosSeleccionados = (nuevosJuegos) => {
     axios.post('http://localhost:3001/juegos-seleccionados', nuevosJuegos)
       .then(response => {
@@ -149,7 +148,9 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
             </div>
           </div>
           <div className="frame-24">
+            <Link to="/historial" >
             <img className="user" src={imagenes.user} alt="User" />
+            </Link>
             <div className="frame-25">
               <div className="frame-26" onClick={toggleComprasDropdown}>
                 <div className="frame-27">
@@ -167,9 +168,9 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
                 </div>
               )}
             </div>
-            <div onClick={toggleVentasDropdown}>
+            <Link to="/iniciar-sesion" onClick={handleCerrarSesion}>
               <img className="vector-2" src={imagenes.vector1} alt="Ventas" />
-            </div>
+            </Link>
             {/* {isVentasDropdownVisible && (
               <div className="dropdown-container2">
                 <PagoDesplegableVentas />
