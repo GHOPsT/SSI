@@ -55,4 +55,3 @@ const VentaFinal = () => {
 };
 
 export default VentaFinal;
-

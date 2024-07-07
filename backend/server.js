@@ -165,7 +165,7 @@ app.get('/venta-nuevos', (req, res) => {
 });
 
 app.get('/venta-usados', (req, res) => {
-  const SQL = 'SELECT * FROM juegos WHERE estado_id = 3';
+  const SQL = 'SELECT * FROM juegos WHERE estado_id = 2';
   DB.query(SQL, (err, rows) => {
     if (err) {
       console.error('Error executing query:', err);

@@ -35,7 +35,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'accion'),(2,'aventura'),(3,'estrategia'),(4,'deportes'),(5,'rpg'),(6,'simulacion'),(7,'3D');
+INSERT INTO `categorias` VALUES (1,'accion'),(2,'aventura'),(3,'estrategia'),(4,'deportes'),(5,'rpg'),(6,'simulacion'),(7,'shooter');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +56,7 @@ CREATE TABLE `detalle` (
   KEY `juego_id` (`juego_id`),
   CONSTRAINT `detalle_ibfk_1` FOREIGN KEY (`pedido_id`) REFERENCES `pedido` (`pedido_id`),
   CONSTRAINT `detalle_ibfk_2` FOREIGN KEY (`juego_id`) REFERENCES `juegos` (`juego_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `detalle` (
 
 LOCK TABLES `detalle` WRITE;
 /*!40000 ALTER TABLE `detalle` DISABLE KEYS */;
-INSERT INTO `detalle` VALUES (1,1,6,7),(2,1,2,4),(3,1,11,2),(4,2,2,4);
+INSERT INTO `detalle` VALUES (1,1,1,3),(2,1,4,1),(3,1,7,2),(4,2,21,1),(5,2,5,1),(6,2,3,1),(7,2,1,1),(8,2,16,1),(9,3,5,1),(10,3,6,2),(11,4,19,1),(12,4,20,1),(13,4,1,1),(14,4,19,1),(15,4,20,1),(16,4,1,1),(17,4,8,1),(18,4,5,1),(19,4,6,3),(20,4,7,1),(21,5,1,1),(22,5,10,1),(23,5,16,1),(24,5,6,1);
 /*!40000 ALTER TABLE `detalle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +80,7 @@ CREATE TABLE `estado` (
   `estado_id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(200) NOT NULL,
   PRIMARY KEY (`estado_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +89,7 @@ CREATE TABLE `estado` (
 
 LOCK TABLES `estado` WRITE;
 /*!40000 ALTER TABLE `estado` DISABLE KEYS */;
-INSERT INTO `estado` VALUES (1,'NUEVO'),(3,'USADO');
+INSERT INTO `estado` VALUES (1,'NUEVO'),(2,'USADO');
 /*!40000 ALTER TABLE `estado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +115,7 @@ CREATE TABLE `juegos` (
   KEY `estado_id` (`estado_id`),
   CONSTRAINT `juegos_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`categoria_id`),
   CONSTRAINT `juegos_ibfk_2` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`estado_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +124,7 @@ CREATE TABLE `juegos` (
 
 LOCK TABLES `juegos` WRITE;
 /*!40000 ALTER TABLE `juegos` DISABLE KEYS */;
-INSERT INTO `juegos` VALUES (2,'Juego2.png','asd',12.00,'1212-12-12',1,12,1,'2024-06-20 07:10:02'),(3,'Juego1.png','USADO',12.00,'1221-12-12',4,12,3,'2024-06-20 07:11:34'),(4,'Juego1.png','asd',12.00,'1321-03-12',1,12,3,'2024-06-20 07:30:11'),(5,'Juego1.png','asd',12.00,'1321-03-12',1,12,3,'2024-06-20 07:30:48'),(6,'Juego1.png','ASDASD',12.00,'1212-12-12',4,122,1,'2024-06-20 14:37:13'),(7,'asd','asd',123.00,'1212-12-12',1,1,1,'2024-06-22 01:01:44'),(8,'asd','asdas',123.00,'3234-02-12',2,1,1,'2024-06-22 01:09:01'),(9,'Captura de pantalla 2024-04-19 165922.png','asd',123.00,'1212-12-12',2,21,1,'2024-06-22 04:51:26'),(10,'Captura de pantalla 2024-04-19 165933.png','asd',12.00,'1212-12-12',1,1,1,'2024-06-22 04:52:31'),(11,'Captura de pantalla 2024-03-01 113047.png','asd',12.00,'1212-12-12',2,1,3,'2024-06-23 19:14:11');
+INSERT INTO `juegos` VALUES (1,'Elden-Ring.png','Juego de rol de acción desarrollado por FromSoftware en colaboración con George R. R. Martin. Disponible: PS5',120.00,'2022-05-02',2,10,1,'2024-07-04 20:13:30'),(3,'Final-Fantasy-VII.png','Remake del clásico RPG de 1997, desarrollado por Square Enix. Disponible: PS5',225.00,'2022-05-02',3,10,2,'2024-07-04 20:15:52'),(4,'The-Outer-Worlds.png','RPG de ciencia ficción desarrollado por Obsidian Entertainment. Disponible: PS4',75.00,'2022-05-02',5,10,1,'2024-07-04 20:16:53'),(5,'The-Outer-Worlds.png','RPG de ciencia ficción desarrollado por Obsidian Entertainment. Disponible: PS4',75.00,'2022-05-02',5,10,2,'2024-07-04 20:16:57'),(6,'The-Legend-Of-Zelda-Breathe-Of-The-Wild.png','Juego de acción y aventuras en un mundo abierto, desarrollado por Nintendo. Disponible: Nintendo Switch',169.00,'2022-05-02',3,10,2,'2024-07-04 20:17:54'),(7,'The-Legend-Of-Zelda-Breathe-Of-The-Wild.png','Juego de acción y aventuras en un mundo abierto, desarrollado por Nintendo. Disponible: Nintendo Switch',169.00,'2022-05-02',3,10,1,'2024-07-04 20:17:58'),(8,'Hogwarts-Legacy.png','RPG de acción ambientado en el universo de Harry Potter, desarrollado por Portkey Games. Disponible: PS5',269.00,'2022-02-05',5,15,1,'2024-07-04 20:19:09'),(9,'Hogwarts-Legacy.png','RPG de acción ambientado en el universo de Harry Potter, desarrollado por Portkey Games. Disponible: PS5',269.00,'2022-02-05',5,15,2,'2024-07-04 20:19:12'),(10,'Pokemon-Sword.png','Juego de rol desarrollado por Game Freak, ambientado en la nueva región de Galar. Disponible: Nintendo Switch',139.00,'2022-02-05',2,10,1,'2024-07-04 20:23:26'),(11,'Pokemon-Sword.png','Juego de rol desarrollado por Game Freak, ambientado en la nueva región de Galar. Disponible: Nintendo Switch',139.00,'2022-02-05',2,5,2,'2024-07-04 20:23:33'),(12,'Return-To-The-Monkey-Island.jpg','Continuación de la clásica serie de aventuras gráficas, desarrollado por Terrible Toybox. Disponible: Nintendo Switch',120.00,'2020-02-05',2,5,2,'2024-07-04 20:25:06'),(13,'Forza-Horizon-5.png','Juego de carreras en mundo abierto desarrollado por Playground Games. Disponible: Xbox Series X/S',100.00,'2020-02-05',2,5,1,'2024-07-04 20:26:01'),(14,'Forza-Horizon-5.png','Juego de carreras en mundo abierto desarrollado por Playground Games. Disponible: Xbox Series X/S',80.00,'2020-02-05',2,5,2,'2024-07-04 20:26:07'),(15,'FIFA-23.png','Simulador de fútbol desarrollado por EA Sports, con las últimas actualizaciones de equipos y jugadores. Disponible: PS5',70.00,'2020-02-05',4,5,2,'2024-07-04 20:27:50'),(16,'Monster-Hunter-World-Iceborne.png','Juego de rol de acción donde los jugadores cazan monstruos gigantes en un mundo abierto, desarrollado por Capcom. Disponible: PS4',99.99,'2020-02-05',2,13,1,'2024-07-04 20:28:54'),(18,'Death-Stranding.png','Juego de acción y aventuras desarrollado por Kojima Productions, con un enfoque en la entrega y la conexión humana. Disponible: PS4',89.99,'2020-02-05',1,13,2,'2024-07-04 20:29:35'),(19,'Death-Stranding.png','Juego de acción y aventuras desarrollado por Kojima Productions, con un enfoque en la entrega y la conexión humana. Disponible: PS4',120.00,'2020-02-05',1,13,1,'2024-07-04 20:29:49'),(20,'Resident-Evil-Village.png','Octava entrega principal de la serie Resident Evil, un survival horror desarrollado por Capcom. Disponible: PS5',150.00,'2020-02-05',1,18,1,'2024-07-04 20:30:23'),(21,'Resident-Evil-Village.png','Octava entrega principal de la serie Resident Evil, un survival horror desarrollado por Capcom. Disponible: PS5',119.99,'2020-02-05',1,13,2,'2024-07-04 20:30:31'),(22,'Persona-5-Royal.png','Juego de rol japonés desarrollado por Atlus, que sigue a un grupo de estudiantes que luchan contra la corrupción. Disponible: PS5',89.99,'2020-02-05',3,16,1,'2024-07-04 20:32:33'),(23,'Persona-5-Royal.png','Juego de rol japonés desarrollado por Atlus, que sigue a un grupo de estudiantes que luchan contra la corrupción. Disponible: PS5',59.00,'2020-02-05',3,13,2,'2024-07-04 20:32:46'),(24,'Bloodborne.png','Juego de rol de acción desarrollado por FromSoftware, ambientado en una ciudad gótica plagada de monstruos. Disponible: PS4',99.99,'2020-02-05',2,25,1,'2024-07-04 20:34:04'),(25,'Bloodborne.png','Juego de rol de acción desarrollado por FromSoftware, ambientado en una ciudad gótica plagada de monstruos. Disponible: PS4',59.99,'2020-02-05',2,13,2,'2024-07-04 20:34:13'),(26,'Doom-Eternal.png','Secuela del reboot de Doom de 2016, un frenético shooter en primera persona desarrollado por id Software. Disponible: PS4',120.99,'2020-02-05',7,99,1,'2024-07-04 20:36:00'),(27,'Doom-Eternal.png','Secuela del reboot de Doom de 2016, un frenético shooter en primera persona desarrollado por id Software. Disponible: PS4',99.99,'2020-02-05',7,99,2,'2024-07-04 20:36:08'),(40,'Pokemon-Sword.png','qweasd',123.00,'1212-12-12',2,1,1,'2024-07-04 20:54:03'),(41,'The-Outer-Worlds.png','qweasd',123.00,'1221-12-12',3,1,2,'2024-07-04 23:58:33');
 /*!40000 ALTER TABLE `juegos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +142,7 @@ CREATE TABLE `pedido` (
   PRIMARY KEY (`pedido_id`),
   KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `pedido` (
 
 LOCK TABLES `pedido` WRITE;
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
-INSERT INTO `pedido` VALUES (1,2,'2024-06-28 20:33:33'),(2,2,'2024-06-28 20:34:47');
+INSERT INTO `pedido` VALUES (1,1,'2024-07-04 20:22:24'),(2,1,'2024-07-04 20:55:31'),(3,1,'2024-07-04 20:56:27'),(4,1,'2024-07-04 23:35:44'),(5,3,'2024-07-04 23:54:31');
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +170,7 @@ CREATE TABLE `usuarios` (
   `apellido` varchar(25) NOT NULL,
   `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`usuario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +179,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'admin','admin','admin@gmail.com','admin','2024-06-16 05:27:37'),(2,'Sebastián','Sebastian','22sevago@gmail.com','Vásquez ','2024-06-17 22:54:41'),(3,'','Sebastián','Sebastián','','2024-06-19 01:48:16'),(4,'asdasd','Sebastián','Sebastián','asd','2024-06-19 03:05:17'),(5,'','Sebastián','Sebastián','','2024-06-19 03:54:15'),(6,'','Sebastián','Sebastián','','2024-06-19 19:17:17');
+INSERT INTO `usuarios` VALUES (1,'admin','admin','admin','admin','2024-07-04 20:19:41'),(2,'admin2','admin2','admin2','admin2','2024-07-04 23:45:36'),(3,'admin3','admin3','admin3','admin3','2024-07-04 23:52:29'),(4,'','admin','admin','','2024-07-05 00:09:44');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -192,4 +192,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-28 15:38:29
+-- Dump completed on 2024-07-07 13:48:52

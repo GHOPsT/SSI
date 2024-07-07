@@ -42,7 +42,7 @@ const VentaDatos = () => {
       price: '',
       release_date: '',
       category_id: '',
-      estado_id: 3,
+      estado_id: 2,
       stock: 1,
     },
     validationSchema: Yup.object({

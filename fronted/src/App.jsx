@@ -46,7 +46,7 @@ function App() {
         <Route path="/venta-datos" element={<ProtectedRoute><VentaDatos /></ProtectedRoute>} />
         <Route path="/venta-usados" element={<ProtectedRoute><VentaUsados /></ProtectedRoute>} />
         <Route path="/venta-nuevos" element={<ProtectedRoute><NuevosJuegos /></ProtectedRoute>} />
-        <Route path="/registrarse" element={<ProtectedRoute><Registrarse /></ProtectedRoute>} />
+        <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/historial" element={<ProtectedRoute><HistorialDeCompras /></ProtectedRoute>} />
         <Route path="/iniciar-sesion" element={<IniciarSesion />} />
         <Route
