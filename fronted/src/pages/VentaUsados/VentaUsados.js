@@ -12,7 +12,7 @@ const VentaUsados = () => {
   const [juegosSeleccionados, setJuegosSeleccionados] = useState([]);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [mostrarCarrito, setMostrarCarrito] = useState(false);
-  const [carritoKey, setCarritoKey] = useState(0); // Añadido estado para clave de CarritoCompras
+  const [carritoKey, setCarritoKey] = useState(0);
 
   useEffect(() => {
     fetch('http://localhost:3001/venta-usados')
@@ -44,8 +44,8 @@ const VentaUsados = () => {
       setJuegosSeleccionados([...juegosSeleccionados]);
       setIsDropdownVisible(true);
       actualizarJuegosSeleccionados([...juegosSeleccionados]);
-      setMostrarCarrito(true);  // Actualiza el estado para mostrar el carrito
-      setCarritoKey(prevKey => prevKey + 1); // Incrementa la clave del carrito para forzar re-render
+      setMostrarCarrito(true);
+      setCarritoKey(prevKey => prevKey + 1);
     }
   };
 
@@ -71,8 +71,8 @@ const VentaUsados = () => {
     setJuegosSeleccionados(nuevosJuegosSeleccionados);
     actualizarJuegosSeleccionados(nuevosJuegosSeleccionados);
     setIsDropdownVisible(true);
-    setMostrarCarrito(true);  // Actualiza el estado para mostrar el carrito
-    setCarritoKey(prevKey => prevKey + 1); // Incrementa la clave del carrito para forzar re-render
+    setMostrarCarrito(true);
+    setCarritoKey(prevKey => prevKey + 1);
   };
 
   const actualizarJuegosSeleccionados = (juegosSeleccionados) => {
@@ -92,7 +92,6 @@ const VentaUsados = () => {
       <div className='venta-usados'>
         <div className='div'>
           <div className='frame'>
-            <h1>Nuevos Juegos</h1>
             {error && <p>{error}</p>}
             <ul className="juegos-grid">
               {juegos.map(juego => (
@@ -115,7 +114,7 @@ const VentaUsados = () => {
       </div>
       {mostrarCarrito && (
         <CarritoCompras
-          key={carritoKey} // Clave dinámica para forzar re-render
+          key={carritoKey}
           juegosSeleccionados={juegosSeleccionados}
           handleRemoverJuego={handleRemoverJuego}
           isDropdownVisible={isDropdownVisible}

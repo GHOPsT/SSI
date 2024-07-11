@@ -41,7 +41,7 @@ const IniciarSesion = () => {
         <div className="group">
           <div className="frame">
             <div className="overlap">
-              <div className="rectangle"></div>
+              <div className="rectangle">
               <div className="div">
                 <div className="text-wrapper">Iniciar sesión</div>
                 <Link to="/registrarse" className="text-wrapper-2">Registrarse</Link>
@@ -80,6 +80,7 @@ const IniciarSesion = () => {
                     </div>
                   </div>
                 </form>
+              </div>
               </div>
             </div>
           </div>

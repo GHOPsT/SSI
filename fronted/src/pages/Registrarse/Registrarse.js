@@ -46,11 +46,12 @@ const Registrarse = () => {
           /> <img className="mail" src={imagenes.mail} alt="mail" /></div>
           <div className="frame-2">
             <input
-              type="password"
+              
               className="contrasea"
               placeholder='Contraseña'
               value={contrasena}
               onChange={(e) => setContrasena(e.target.value)}
+              
             />
             <img className="lock" src={imagenes.lock} alt="lock" />
             <div className="group">
@@ -59,9 +60,8 @@ const Registrarse = () => {
           </div>
           <div className="frame-2">
             <input
-              type="text"
               className="confirmar-contrasea"
-              placeholder="Apellido"
+              placeholder="Confirmar contraseña"
               value={apellido}
               onChange={(e) => setApellido(e.target.value)}
             />

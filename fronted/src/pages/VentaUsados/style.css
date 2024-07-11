@@ -3,49 +3,45 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  padding: 20px; /* Added padding for small screens */
 }
 
 .venta-usados .div {
   background-color: #f6f6f6;
-  width: 1400px;
-  height: 1701px;
+  width: 100%;
+  max-width: 1400px; /* Added max-width for larger screens */
   position: relative;
-  
-
 }
 
 .venta-usados .frame {
-  
   text-align: center;
 }
 
 .juegos-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0px; /* Ajusta el espacio entre los elementos según sea necesario */
-  padding: 70px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Make the grid responsive */
+  gap: 20px; /* Adjusted gap */
+  padding: 20px; /* Adjusted padding */
   list-style: none;
 }
 
 .juego-item {
   display: flex;
   justify-content: center;
+  padding: 20px;
 }
 
 .venta-usados .videojuego {
   display: flex;
   flex-direction: column;
-  width: 203px;
-  height: 384px;
+  width: 100%;
+  max-width: 203px; /* Maintain the width on larger screens */
+  height: auto; /* Adjust the height to fit content */
   align-items: center;
   gap: 10px;
   padding: 14px;
-  top: 614px;
-  left: 97px;
-
   border-radius: 6px;
-  border: 1px solid;
-  border-color: #00000021;
+  border: 1px solid #00000021;
   box-shadow: 0px 1px 13px #0000003b;
   background: linear-gradient(
     180deg,
@@ -58,10 +54,9 @@
   );
 }
 
-
 .venta-usados .text-wrapper {
-  width: 137px;
-  height: 28px;
+  width: 100%;
+  height: auto; /* Adjust height to fit content */
   font-family: "Actor", Helvetica;
   font-weight: 400;
   color: #000000;
@@ -70,10 +65,7 @@
 }
 
 .venta-usados .rectangle {
-  position: relative;
-  flex: 1;
-  width: 167px;
-  flex-grow: 1;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -83,30 +75,65 @@
   gap: 8px;
 }
 
-.venta-usados .frame-2 {
-  display: flex;
-  width: 158px;
-  height: 35px;
-  justify-content: center;
-  background-color: #14adb6;
-  align-items: center;
-  gap: 10px;
-  position: relative;
-}
 .venta-usados .text-wrapper-3 {
-  position: relative;
-  width: fit-content;
+  width: 100%;
   font-family: "Actor", Helvetica;
   font-weight: 400;
   background-color: #7914b6;
   color: white;
   border: none;
   font-size: 15px;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-  width: 158px;
-  height: 35px
+  text-align: center;
+  padding: 10px 25px; /* Ajusta el padding horizontal según necesites */
 }
 
+/* Media Queries */
+@media (max-width: 1200px) {
+  .venta-usados .juegos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust columns */
+  }
+}
+
+@media (max-width: 768px) {
+  .venta-usados .juegos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust columns */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .venta-usados .videojuego {
+    width: 100%;
+    max-width: 180px; /* Adjust width */
+  }
+
+  .venta-usados .text-wrapper {
+    font-size: 14px; /* Adjust font size */
+  }
+
+  .venta-usados .text-wrapper-3 {
+    font-size: 14px; /* Adjust font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .venta-usados {
+    padding: 10px; /* Adjust padding */
+  }
+
+  .venta-usados .juegos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Adjust columns */
+  }
+
+  .venta-usados .videojuego {
+    width: 100%;
+    max-width: 160px; /* Adjust width */
+  }
+
+  .venta-usados .text-wrapper {
+    font-size: 13px; /* Adjust font size */
+  }
+
+  .venta-usados .text-wrapper-3 {
+    font-size: 13px; /* Adjust font size */
+  }
+}
 
