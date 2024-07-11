@@ -1,0 +1,101 @@
+/* Estilos globales */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Actor", Helvetica, sans-serif;
+  background-color: #f6f6f6;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header, .footer {
+  background-color: #02474c;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.button {
+  background-color: #f7b9a5;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: #d69b87;
+}
+
+input[type="text"], input[type="password"], textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background-color: #02474c;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #003d3f;
+}
+
+/* Estilos específicos */
+.inicio .inicio-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.inicio .content {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.header .nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.header .nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.header .nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.header .nav-links a:hover {
+  text-decoration: underline;
+}
+

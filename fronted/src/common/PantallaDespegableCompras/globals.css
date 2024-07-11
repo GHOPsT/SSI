@@ -1,0 +1,112 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=Actor:400");
+
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Estilos para la visibilidad del carrito */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* Ajustar según el ancho del carrito */
+  width: 400px;  /* Ajustar según el diseño */
+  height: 100%;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s ease;
+  z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
+}
+
+.cart-sidebar.visible {
+  right: 0;
+}
+
+.toggle-cart-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001; /* Asegurarse de que esté por encima del carrito */
+  background-color: #ff5733; /* Color del botón */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+
+/* Añadir estilos adicionales para el carrito */
+.pantalla-despegable {
+  padding: 20px;
+}
+
+.pantalla-despegable .div {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.pantalla-despegable .text-wrapper {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.pantalla-despegable .text-wrapper-2 {
+  font-size: 18px;
+  color: #ff5733;
+}
+
+.pantalla-despegable .text-wrapper-3,
+.pantalla-despegable .text-wrapper-4,
+.pantalla-despegable .text-wrapper-5,
+.pantalla-despegable .text-wrapper-6 {
+  font-size: 16px;
+  color: #333;
+}
+
+.pantalla-despegable .shopping-cart,
+.pantalla-despegable .x-square,
+.pantalla-despegable .line,
+.pantalla-despegable .ljcxangrw-x,
+.pantalla-despegable .trash,
+.pantalla-despegable .img {
+  width: 100%;
+  height: auto;
+}
+
+.pantalla-despegable .frame-2 {
+  background-color: #ff5733;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pantalla-despegable .div-wrapper {
+  margin-top: 20px;
+}
+
+.pantalla-despegable .frame-3,
+.pantalla-despegable .frame-4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}

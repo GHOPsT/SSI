@@ -1,0 +1,19 @@
+:root {
+  --gray-700: rgba(71, 81, 86, 1);
+  --gray-900: rgba(25, 28, 31, 1);
+  --gray-50: rgba(242, 244, 245, 1);
+  --gray-100: rgba(228, 231, 233, 1);
+  --gray-00: rgba(255, 255, 255, 1);
+  --body-small-500-font-family: "Public Sans", Helvetica;
+  --body-small-500-font-weight: 500;
+  --body-small-500-font-size: 14px;
+  --body-small-500-letter-spacing: 0px;
+  --body-small-500-line-height: 20px;
+  --body-small-500-font-style: normal;
+  --body-small-600-font-family: "Public Sans", Helvetica;
+  --body-small-600-font-weight: 600;
+  --body-small-600-font-size: 14px;
+  --body-small-600-letter-spacing: 0px;
+  --body-small-600-line-height: 20px;
+  --body-small-600-font-style: normal;
+}

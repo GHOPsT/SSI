@@ -1,0 +1,1177 @@
+.carrito-de-compras {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.carrito-de-compras .div {
+  background-color: #ffffff;
+  overflow: hidden;
+  width: 1395px;
+  height: 800px;
+  position: relative;
+}
+
+.carrito-de-compras .button-remover{
+  background-color: #efefef;
+}
+
+.carrito-de-compras .buscar-producto{
+  position: absolute;
+  height: 16px;
+  top: 8px;
+  left: 174px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #aba3a3;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: normal;
+  border: none; /* Elimina el borde */
+  outline: none; /* Elimina el contorno del enfoque */
+}
+
+.carrito-de-compras .line {
+  width: 1240px;
+  height: 1px;
+  top: 50px;
+  left: 62px;
+  position: absolute;
+  object-fit: cover;
+}
+
+.carrito-de-compras .text-wrapper {
+  position: absolute;
+  height: 48px;
+  top: 80px;
+  left: 51px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.carrito-de-compras .frame {
+  display: flex;
+  flex-direction: column;
+  width: 715px;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 20px 24px;
+  position: absolute;
+  top: 160px;
+  left: 51px;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 500px;
+  overflow-y: auto;
+  border: 1px solid;
+  border-color: #0000001a;
+  overflow-x: hidden; /* Change to 'auto' if horizontal scroll is required */
+}
+
+.carrito-de-compras .frame-2 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .rectangle {
+  position: relative;
+  width: 88px;
+  height: 127px;
+  object-fit: cover;
+}
+
+.carrito-de-compras .frame-3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex: 1;
+  flex-grow: 1;
+}
+
+.carrito-de-compras .frame-4 {
+  display: inline-flex;
+  flex-direction: column;
+  height: 118px;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .frame-5 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .text-wrapper-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.carrito-de-compras .frame-6 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .text-wrapper-3 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .text-wrapper-4 {
+  position: relative;
+  width: fit-content;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .frame-7 {
+  display: flex;
+  flex-direction: column;
+  width: 225px;
+  height: 124px;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+}
+
+.carrito-de-compras .img {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.carrito-de-compras .frame-8 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px 20px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: #efefef;
+  border-radius: 62px;
+  overflow: hidden;
+}
+
+.carrito-de-compras .frame-9 {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.carrito-de-compras .text-wrapper-5 {
+  position: relative;
+  width: fit-content;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .line-2 {
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  height: 1px;
+  object-fit: cover;
+}
+
+.carrito-de-compras .frame-10 {
+  display: flex;
+  flex-direction: column;
+  width: 505px;
+  height: 458px;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 20px 24px;
+  position: absolute;
+  top: 160px;
+  left: 835px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: #0000001a;
+}
+
+.carrito-de-compras .text-wrapper-6 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .frame-11 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .frame-12 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  width: 100%;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .text-wrapper-7 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #00000099;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.carrito-de-compras .text-wrapper-8 {
+  font-size: 20px;
+  white-space: nowrap;
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  text-align: right;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .text-wrapper-9 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ff3333;
+  font-size: 20px;
+  text-align: right;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.carrito-de-compras .text-wrapper-10 {
+  position: relative;
+  width: fit-content;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.carrito-de-compras .text-wrapper-11 {
+  font-size: 24px;
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  text-align: right;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .frame-13 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .frame-14 {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  position: relative;
+  flex: 1;
+  flex-grow: 1;
+  background-color: #efefef;
+  border-radius: 62px;
+  overflow: hidden;
+}
+
+.carrito-de-compras .text-wrapper-12 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #00000066;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  border: none;
+  background: transparent;
+  outline: none; /* Elimina el contorno del enfoque */
+}
+
+.carrito-de-compras .div-wrapper {
+  display: flex;
+  width: 119px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 16px;
+  position: relative;
+  align-self: stretch;
+  background-color: #000000;
+  border-radius: 62px;
+  overflow: hidden;
+}
+
+.carrito-de-compras .text-wrapper-13 {
+  position: relative;
+  width: fit-content;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.carrito-de-compras .frame-15 {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 54px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  background-color: #000000;
+  border-radius: 62px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.carrito-de-compras .frame-wrapper {
+  display: flex;
+  width: 1403px;
+  height: 404px;
+  align-items: center;
+  justify-content: center;
+  gap: 172px;
+  padding: 97px 106px;
+  position: absolute;
+  top: 826px;
+  left: -8px;
+  background-color: #393939;
+}
+
+.carrito-de-compras .frame-16 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -41px;
+  margin-bottom: -41px;
+}
+
+.carrito-de-compras .frame-17 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 172px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .frame-18 {
+  position: relative;
+  width: 1105px;
+  height: 227px;
+}
+
+.carrito-de-compras .frame-19 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.carrito-de-compras .RESEARCH {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: transparent;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+  line-height: 17px;
+  white-space: nowrap;
+}
+
+.carrito-de-compras .span {
+  color: #00c9d6;
+  letter-spacing: 0.04px;
+}
+
+.carrito-de-compras .text-wrapper-14 {
+  color: #ffffff;
+  letter-spacing: 0.04px;
+}
+
+.carrito-de-compras .stratus-RESEARCH {
+  position: relative;
+  width: fit-content;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  line-height: 17px;
+}
+
+.carrito-de-compras .cont-ctenos {
+  position: relative;
+  width: fit-content;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: transparent;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+  line-height: 17px;
+}
+
+.carrito-de-compras .text-wrapper-15 {
+  color: #ffffff;
+  font-size: 15px;
+  letter-spacing: 0.03px;
+}
+
+.carrito-de-compras .frame-20 {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .frame-21 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 21px;
+  position: absolute;
+  top: 0;
+  left: 406px;
+}
+
+.carrito-de-compras .text-wrapper-16 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #00c9d6;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.carrito-de-compras .frame-22 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .text-wrapper-17 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .text-wrapper-18 {
+  position: relative;
+  width: fit-content;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .frame-23 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 21px;
+  position: absolute;
+  top: 0;
+  left: 688px;
+}
+
+.carrito-de-compras .frame-24 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 21px;
+  position: absolute;
+  top: 0;
+  left: 973px;
+}
+
+.carrito-de-compras .frame-25 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 11px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .img-wrapper {
+  position: relative;
+  width: 97px;
+  height: 55px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.carrito-de-compras .VISA {
+  position: absolute;
+  width: 90px;
+  height: 27px;
+  top: 13px;
+  left: 2px;
+  object-fit: cover;
+}
+
+.carrito-de-compras .MASTER {
+  position: absolute;
+  width: 85px;
+  height: 49px;
+  top: 1px;
+  left: 7px;
+  object-fit: cover;
+}
+
+.carrito-de-compras .image {
+  position: absolute;
+  width: 93px;
+  height: 47px;
+  top: 4px;
+  left: 0;
+}
+
+.carrito-de-compras .INSLALLMENTS {
+  position: absolute;
+  width: 84px;
+  height: 59px;
+  top: 0;
+  left: 7px;
+  object-fit: cover;
+}
+
+.carrito-de-compras .overlap-group-wrapper {
+  position: absolute;
+  width: 1404px;
+  height: 60px;
+  top: 1230px;
+  left: -12px;
+}
+
+.carrito-de-compras .overlap-group {
+  position: relative;
+  width: 1581px;
+  height: 59px;
+  background-color: #161616;
+}
+
+.carrito-de-compras .element-e {
+  position: absolute;
+  top: 20px;
+  left: 209px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  line-height: 17px;
+  white-space: nowrap;
+}
+
+.carrito-de-compras .frame-26 {
+  position: absolute;
+  width: 1400px;
+  height: 68px;
+  top: 0;
+  left: -2px;
+  background-color: #02474c;
+}
+
+.carrito-de-compras .group {
+  position: absolute;
+  width: 195px;
+  height: 36px;
+  top: 14px;
+  left: 17px;
+}
+
+.carrito-de-compras .text-wrapper-19 {
+  position: absolute;
+  height: 23px;
+  top: 8px;
+  left: 83px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 19px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .vector {
+  position: absolute;
+  width: 66px;
+  height: 36px;
+  top: 0;
+  left: 0;
+}
+
+.carrito-de-compras .frame-27 {
+  position: absolute;
+  width: 534px;
+  height: 39px;
+  top: 14px;
+  left: 332px;
+  background-color: #ffffff;
+  border-radius: 6px;
+}
+
+.carrito-de-compras .buscar-producto {
+  position: absolute;
+  width: 90px;
+  height: 16px;
+  top: 8px;
+  left: 174px;
+  background-color: transparent;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #aba3a3;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: normal;
+  border: 0;
+  padding: 0;
+}
+
+.carrito-de-compras .overlap-group-2 {
+  position: absolute;
+  width: 128px;
+  height: 25px;
+  top: 8px;
+  left: 18px;
+}
+
+.carrito-de-compras .text-wrapper-20 {
+  position: absolute;
+  height: 16px;
+  top: 0;
+  left: 0;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #aba3a3;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .chevron-down {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 1px;
+  left: 104px;
+}
+
+.carrito-de-compras .line-3 {
+  width: 1px;
+  height: 38px;
+  top: 0;
+  left: 156px;
+  position: absolute;
+  object-fit: cover;
+}
+
+.carrito-de-compras .frame-28 {
+  position: absolute;
+  width: 43px;
+  height: 38px;
+  top: 0;
+  left: 490px;
+}
+
+.carrito-de-compras .group-2 {
+  position: absolute;
+  width: 134px;
+  height: 29px;
+  top: 12px;
+  left: 907px;
+}
+
+.carrito-de-compras .frame-29 {
+  display: flex;
+  width: 134px;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.carrito-de-compras .frame-30 {
+  display: flex;
+  flex-direction: column;
+  width: 131.5px;
+  align-items: flex-start;
+  gap: 4px;
+  position: relative;
+}
+
+.carrito-de-compras .frame-31 {
+  display: flex;
+  width: 132px;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-right: -0.5px;
+}
+
+.carrito-de-compras .group-3 {
+  position: relative;
+  width: 16px;
+  height: 8.08px;
+}
+
+.carrito-de-compras .frame-32 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 5px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-right: -1px;
+}
+
+.carrito-de-compras .text-wrapper-21 {
+  position: relative;
+  width: 113px;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 11px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .frame-33 {
+  display: flex;
+  width: 132px;
+  align-items: center;
+  gap: 9px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-right: -0.5px;
+}
+
+.carrito-de-compras .group-4 {
+  position: relative;
+  width: 12px;
+  height: 10px;
+  margin-left: -0.5px;
+}
+
+.carrito-de-compras .frame-34 {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .text-wrapper-22 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 10px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.carrito-de-compras .frame-35 {
+  display: inline-flex;
+  flex-direction: column;
+  height: 56px;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 3px;
+  position: absolute;
+  top: 6px;
+  left: 1083px;
+}
+
+.carrito-de-compras .ll-menos-wrapper {
+  display: flex;
+  width: 70px;
+  align-items: flex-start;
+  gap: 32px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .ll-menos {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 9px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .frame-36 {
+  display: flex;
+  width: 94px;
+  align-items: flex-start;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .headphones-svgrepo {
+  position: relative;
+  width: 19px;
+  height: 19px;
+}
+
+.carrito-de-compras .text-wrapper-23 {
+  position: relative;
+  width: 96px;
+  margin-top: -1px;
+  margin-right: -21px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: right;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .frame-37 {
+  position: absolute;
+  width: 120px;
+  height: 44px;
+  top: 12px;
+  left: 1224px;
+}
+
+.carrito-de-compras .user {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 10px;
+  left: 0;
+}
+
+.carrito-de-compras .frame-38 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  position: absolute;
+  top: 0;
+  left: 96px;
+}
+
+.carrito-de-compras .frame-39 {
+  display: inline-flex;
+  flex-direction: column;
+  height: 44px;
+  align-items: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .group-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.carrito-de-compras .group-5 {
+  position: relative;
+  width: 26.5px;
+  height: 36.05px;
+  margin-right: -2px;
+}
+
+.carrito-de-compras .overlap-group-3 {
+  position: relative;
+  width: 24px;
+  height: 36px;
+}
+
+.carrito-de-compras .text-wrapper-24 {
+  position: absolute;
+  width: 21px;
+  height: 18px;
+  top: 0;
+  left: 4px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #fcdd3b;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .shopping-cart {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 12px;
+  left: 0;
+}
+
+.carrito-de-compras .vector-2 {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 9px;
+  left: 49px;
+}
+
+.carrito-de-compras .frame-40 {
+  display: flex;
+  width: 1400px;
+  height: 49px;
+  align-items: center;
+  gap: 396px;
+  padding: 51px;
+  position: absolute;
+  top: 68px;
+  left: -2px;
+  background-color: #0e3b3d;
+  box-shadow: 0px 4px 9px #00000063;
+}
+
+.carrito-de-compras .navbar {
+  position: relative;
+  width: 720px;
+  height: 41px;
+  margin-top: -47px;
+  margin-bottom: -47px;
+}
+
+.carrito-de-compras .frame-41 {
+  position: absolute;
+  width: 179px;
+  height: 31px;
+  top: 5px;
+  left: -42px;
+  border-radius: 8px;
+}
+
+.carrito-de-compras .group-6 {
+  position: absolute;
+  width: 13px;
+  height: 12px;
+  top: 8px;
+  left: 11px;
+}
+
+.carrito-de-compras .rectangle-2 {
+  position: absolute;
+  width: 13px;
+  height: 2px;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+}
+
+.carrito-de-compras .rectangle-3 {
+  position: absolute;
+  width: 13px;
+  height: 2px;
+  top: 5px;
+  left: 0;
+  background-color: #ffffff;
+}
+
+.carrito-de-compras .rectangle-4 {
+  position: absolute;
+  width: 13px;
+  height: 2px;
+  top: 11px;
+  left: 0;
+  background-color: #ffffff;
+}
+
+.carrito-de-compras .text-wrapper-25 {
+  position: absolute;
+  width: 196px;
+  top: 4px;
+  left: 32px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .text-wrapper-26 {
+  left: 220px;
+  position: absolute;
+  height: 16px;
+  top: 9px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .text-wrapper-27 {
+  left: 327px;
+  position: absolute;
+  height: 16px;
+  top: 9px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .text-wrapper-28 {
+  left: 434px;
+  position: absolute;
+  height: 16px;
+  top: 9px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .text-wrapper-29 {
+  left: 547px;
+  position: absolute;
+  height: 16px;
+  top: 9px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.carrito-de-compras .frame-42 {
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -37.5px;
+  margin-bottom: -37.5px;
+}
