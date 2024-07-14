@@ -70,7 +70,7 @@ const DetalleCompras = () => {
               </div>
               <div className="frame-12">
                 <div className="text-wrapper-7">Descuento (-20%)</div>
-                <div className="text-wrapper-9">-S/ {precioTotal * 0.2}</div>
+                <div className="text-wrapper-9">-S/ {(precioTotal * 0.2).toFixed(2)}</div>
               </div>
               <div className="frame-12">
                 <div className="text-wrapper-7">Delivery</div>
@@ -79,7 +79,7 @@ const DetalleCompras = () => {
               <img className="line-2" src={imagenes.line61} alt="line61" />
               <div className="frame-12">
                 <div className="text-wrapper-10">Total</div>
-                <div className="text-wrapper-11">S/ {precioTotal * 0.8 + 20}</div>
+                <div className="text-wrapper-11">S/ {(precioTotal * 0.8 + 20).toFixed(2)}</div>
               </div>
             </div>
             <div className="frame-13">

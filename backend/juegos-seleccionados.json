@@ -1,0 +1,50 @@
+[
+  {
+    "juego_id": 11,
+    "titulo": "Pokemon-Sword.png",
+    "descripcion": "Juego de rol desarrollado por Game Freak, ambientado en la nueva región de Galar. Disponible: Nintendo Switch",
+    "precio": 139,
+    "fecha_lanzamiento": "2022-02-05T05:00:00.000Z",
+    "categoria_id": 2,
+    "stock": 5,
+    "estado_id": 2,
+    "fecha_creacion": "2024-07-04T20:23:33.000Z",
+    "cantidad": 2
+  },
+  {
+    "juego_id": 10,
+    "titulo": "Pokemon-Sword.png",
+    "descripcion": "Juego de rol desarrollado por Game Freak, ambientado en la nueva región de Galar. Disponible: Nintendo Switch",
+    "precio": 139,
+    "fecha_lanzamiento": "2022-02-05T05:00:00.000Z",
+    "categoria_id": 2,
+    "stock": 10,
+    "estado_id": 1,
+    "fecha_creacion": "2024-07-04T20:23:26.000Z",
+    "cantidad": 2
+  },
+  {
+    "juego_id": 6,
+    "titulo": "The-Legend-Of-Zelda-Breathe-Of-The-Wild.png",
+    "descripcion": "Juego de acción y aventuras en un mundo abierto, desarrollado por Nintendo. Disponible: Nintendo Switch",
+    "precio": 169,
+    "fecha_lanzamiento": "2022-05-02T05:00:00.000Z",
+    "categoria_id": 3,
+    "stock": 10,
+    "estado_id": 2,
+    "fecha_creacion": "2024-07-04T20:17:54.000Z",
+    "cantidad": 1
+  },
+  {
+    "juego_id": 18,
+    "titulo": "Death-Stranding.png",
+    "descripcion": "Juego de acción y aventuras desarrollado por Kojima Productions, con un enfoque en la entrega y la conexión humana. Disponible: PS4",
+    "precio": 89.99,
+    "fecha_lanzamiento": "2020-02-05T05:00:00.000Z",
+    "categoria_id": 1,
+    "stock": 13,
+    "estado_id": 2,
+    "fecha_creacion": "2024-07-04T20:29:35.000Z",
+    "cantidad": 1
+  }
+]

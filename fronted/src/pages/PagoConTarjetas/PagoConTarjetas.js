@@ -77,11 +77,11 @@ const PagoConTarjetas = () => {
                   <div class="frame-6">
                     <div class="frame-7">
                       <div class="text-wrapper-3">Subtotal</div>
-                      <div class="text-wrapper-4">{precioTotal}</div>
+                      <div class="text-wrapper-4">{(precioTotal).toFixed(2)}</div>
                     </div>
                     <div class="frame-7">
                       <div class="text-wrapper-5">Descuento</div>
-                      <div class="text-wrapper-4">{precioTotal*0.2}</div>
+                      <div class="text-wrapper-4">{(precioTotal*0.2).toFixed(2)}</div>
                     </div>
                     <div class="frame-7">
                       <div class="text-wrapper-5">Delivery</div>
@@ -97,7 +97,7 @@ const PagoConTarjetas = () => {
                       <div class="text-wrapper-6">Total</div>
                       <div class="text-wrapper-7">Cantidad a pagar:</div>
                     </div>
-                    <div class="text-wrapper-8">{precioTotal *0.8 + 20}</div>
+                    <div class="text-wrapper-8">{(precioTotal *0.8 + 20).toFixed(2)}</div>
                   </div>
                 </div>
               </div>
@@ -145,7 +145,7 @@ const PagoConTarjetas = () => {
               </div>
             </div>
             <div class="frame-18">
-              <Link to="/compra-exitosa" class="pay" onClick={handleCompraExitosa}><div class="pay-usd">S/ {precioTotal *0.8 + 20}</div></Link>
+              <Link to="/compra-exitosa" class="pay" onClick={handleCompraExitosa}><div class="pay-usd">S/ {(precioTotal *0.8 + 20).toFixed(2)}</div></Link>
               <img class="vector" src={imagenes.vector1} />
               <p class="p">
                 Sus datos personales se utilizarán para procesar su pedido, respaldar su experiencia en este sitio web y
