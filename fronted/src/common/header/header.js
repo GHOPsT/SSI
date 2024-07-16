@@ -146,7 +146,7 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
               onMouseEnter={() => handleMouseEnter('nuevo')}
               onMouseLeave={handleMouseLeave}
             >
-              Nuevo
+              Perfil
             </Link>
             <Link
               to="/venta-usados"
@@ -154,7 +154,7 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
               onMouseEnter={() => handleMouseEnter('usado')}
               onMouseLeave={handleMouseLeave}
             >
-              Usado
+              Ver Libros
             </Link>
             <Link
               to="/venta-codigo"
@@ -162,7 +162,7 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
               onMouseEnter={() => handleMouseEnter('vender')}
               onMouseLeave={handleMouseLeave}
             >
-              Vender
+              Foro
             </Link>
             <div className="header-overlay" style={{ display: hoveredLink ? 'block' : 'none' }}></div>
           </div>
