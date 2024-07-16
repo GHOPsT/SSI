@@ -7,8 +7,8 @@ import contraseniapng from './img/contrasenia.png';
 import GuardarUsuario from './UsuarioGuardado';
 
 const IniciarSesion = () => {
-  const [nombre_usuario, setNombre_usuario] = useState('');
-  const [contrasena, setContrasena] = useState('');
+  const [ID_Usuario, setNombre_usuario] = useState('');
+  const [Contrasenia, setContrasena] = useState('');
   const navigate = useNavigate(); // Inicializa useNavigate
 
   const iniciarSesion = async (event) => {
@@ -17,11 +17,11 @@ const IniciarSesion = () => {
       const response = await fetch('http://localhost:3001/iniciar-sesion', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre_usuario, contrasena }),
+        body: JSON.stringify({ID_Usuario, Contrasenia }),
       });
       const data = await response.json();
-      if (data.usuario_id) {
-        GuardarUsuario(data.usuario_id); 
+      if (data.ID_Usuario) {
+        GuardarUsuario(data.ID_Usuario); 
         navigate('/inicio'); // Redirige a la página de inicio
       } else {
         alert('Nombre de usuario o contraseña incorrectos');
@@ -35,48 +35,41 @@ const IniciarSesion = () => {
   return (
     <div className="iniciar-sesin">
       <div className="group-wrapper">
-        <div className="group">
-          <div className="frame">
-            <div className="overlap">
+       <div className="group-2">
+          <div className="text-wrapper-7">Sistema Integral de Información y Recursos Educativos </div>
+        </div>
               <div className="rectangle"></div>
               <div className="div">
                 <div className="text-wrapper">Iniciar sesión</div>
                 <Link to="/registrarse" className="text-wrapper-2">Registrarse</Link>
-                <form onSubmit={iniciarSesion}>
+                <form className="frame" onSubmit={iniciarSesion}>
                   <div className="frame-2">
                     <input
-                      className="correo-electrnico"
+                      className="box-txt"
                       placeholder="Usuario"
-                      value={nombre_usuario}
+                      value={ID_Usuario}
                       onChange={(e) => setNombre_usuario(e.target.value)}
                     />
-                    <img className="mail" src={userpng} alt="mail" />
+                    <img className="img" src={userpng} alt="img" />
                   </div>
-                  <div className="frame-6">
+                  <div className="frame-4">
                     <input
                       type="password"
-                      className="contrasea"
+                      className="box-txt"
                       placeholder="*********"
-                      value={contrasena}
+                      value={Contrasenia}
                       onChange={(e) => setContrasena(e.target.value)}
                     />
-                    <img className="lock" src={contraseniapng} alt="lock" />
+                    <img className="img" src={contraseniapng} alt="img" />
                   </div>
-                  <div className="button">
-                    <input type="submit" className="rectangle-2" value="Ingresar" />
+                  <div className="frame-3">
+                    <button type="submit" className="rectangle-2">Ingresar</button>
                   </div>
                 </form>
               </div>
-            </div>
           </div>
-          <div className="group-2">
-            <div className="text-wrapper-7">Sistema Integral de Información y Recursos Educativos </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
 
 export default IniciarSesion;
-

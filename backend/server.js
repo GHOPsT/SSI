@@ -52,23 +52,30 @@ app.post('/registrarse', (req, res) => {
 });
 
 app.post('/iniciar-sesion', (req, res) => {
-  const { nombre_usuario, contrasena } = req.body;
+  const { ID_Usuario, Contrasenia } = req.body;
   console.log('Datos recibidos:', req.body);
 
-  const SQL = 'SELECT usuario_id FROM usuarios WHERE nombre_usuario = ? AND contrasena = ?';
-  const values = [nombre_usuario, contrasena];
+  const queryUser = 'SELECT ID_Usuario, Contrasenia FROM usuarios WHERE ID_Usuario = ?';
+  const valuesUser = [ID_Usuario];
+  console.log(valuesUser);
 
-  DB.query(SQL, values, (err, result) => {
+  DB.query(queryUser, valuesUser, (err, result) => {
     if (err) {
       console.error('Error executing query:', err);
       res.status(500).json({ error: 'Error executing query' });
       return;
     }
     if (result.length > 0) {
-      const usuario_id = result[0].usuario_id; // Obtener el usuario_id si existe
-      res.json({ usuario_id }); // Devolver el usuario_id
+      const user = result[0]; // Obtener el usuario_id si existe
+      if (user.Contrasenia === Contrasenia){
+        res.json({ ID_Usuario: user.ID_Usuario});
+      } else {
+        console.log('Contraseña incorrecta');
+        res.json({ID_Usuario: false});
+      }
     } else {
-      res.json({ usuario_id: false }); // Devolver false si no se encontró coincidencia
+      console.log('Usuario no encontrado');
+      res.json({ID_Usuario: false});
     }
   });
 });
