@@ -90,14 +90,13 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
 
   };
 
-
   return (
     <div className="header">
       <div className="inicio">
         <div className="frame-13">
           <div className="group-3">
-            <div className="text-wrapper-8">GAME CYCLE</div>
-            <img className="vector" src={imagenes.vector} alt="Logo" />
+            <div className="text-wrapper-8">SIIRE</div>
+            <img className="vector" src={imagenes.libro} alt="Logo" />
           </div>
           <div className="frame-14">
             <input className="buscar-producto" placeholder="Buscar producto" />
@@ -120,68 +119,15 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
             <img className="line-5" src={imagenes.line7} alt="Line" />
             <img className="frame-15" src={imagenes.frame198} alt="Buscar" onClick={handleImageClick} />
           </div>
-          <div className="group-4">
-            <div className="frame-16">
-              <div className="frame-17">
-                <div className="frame-18">
-                  <img className="group-5" src={imagenes.group} alt="Delivery" />
-                  <div className="frame-19">
-                    <div className="text-wrapper-10">Delivery</div>
-                  </div>
-                </div>
-                <div className="frame-20">
-                  <img className="group-6" src={imagenes.group95} alt="Retornar" />
-                  <div className="frame-21">
-                    <div className="text-wrapper-11">Retornar</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="frame-22">
-            <div className="ll-menos-wrapper">
-              <div className="ll-menos">Llámenos</div>
-            </div>
-            <div className="frame-23">
-              <img className="headphones-svgrepo" src={imagenes.headphonesSvg} alt="Headphones" />
-              <div className="text-wrapper-12">+51 964542293</div>
-            </div>
-          </div>
           <div className="frame-24">
             <Link to="/historial" >
             <img className="user" src={imagenes.user} alt="User" />
             </Link>
             <div className="frame-25">
-              <div className="frame-26" onClick={toggleComprasDropdown}>
-                <div className="frame-27">
-                  <div className="group-7">
-                    <div className="overlap-group-3">
-                      <div className="text-wrapper-13">{juegosSeleccionados.reduce((total, juego) => total + juego.cantidad, 0)}</div>
-                      <img className="shopping-cart" src={imagenes.shoppingCart} alt="Shopping Cart" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {isComprasDropdownVisible && (
-                <div className="dropdown-container">
-                  <PagoDesplegableCompras juegosSeleccionados={juegosSeleccionados} onRemoverJuego={onRemoverJuego} />
-                </div>
-              )}
+              <Link to ="/iniciar-sesion">
+                <img className="cerrar" src={imagenes.cerrar} alt="Cerrar sesion" /> 
+              </Link>
             </div>
-            <Link to="/iniciar-sesion" onClick={handleCerrarSesion}>
-              <img className="vector-2" src={imagenes.vector1} alt="Ventas" />
-            </Link>
-            {/* {isVentasDropdownVisible && (
-              <div className="dropdown-container2">
-                <PagoDesplegableVentas />
-              </div>
-            )} */}
-
-            {/*isVentasDropdownVisible && (
-              <div className="dropdown-container2">
-                <PagoDesplegableVentas />
-              </div>
-            )*/}
           </div>
         </div>
         <div className="frame-31">
@@ -220,7 +166,6 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
             </Link>
             <div className="header-overlay" style={{ display: hoveredLink ? 'block' : 'none' }}></div>
           </div>
-          <img className="frame-30" src={imagenes.frame118_1} alt="Banner" />
         </div>
       </div>
     </div>

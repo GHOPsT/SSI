@@ -6,10 +6,6 @@ import frame282 from "./img/frame-282.png";
 import frame303 from "./img/frame-303.png";
 import group from "./img/group.png";
 import group72 from "./img/group-72.png";
-import group95 from "./img/group-95.png";
-import headphonesSvg from "./img/headphones-svgrepo-com-1.svg";
-import image128 from "./img/image-128.png";
-import inslallments from "./img/inslallments.png";
 import line7 from "./img/line-7.svg";
 import line8 from "./img/line-8.svg";
 import line10 from "./img/line-10.svg";
@@ -20,24 +16,19 @@ import rectangle2 from "./img/rectangle-2.png";
 import rectangle3 from "./img/rectangle-3.png";
 import shoppingCart from "./img/shopping-cart.svg";
 import user from "./img/user.svg";
-import vector from "./img/vector.svg";
-import vector1 from "./img/vector-1.svg";
-import visa from "./img/visa.png";
+import libro from "./img/libro-abierto.png";
+import cerrar from "./img/cerrar-sesion.png";
 
 export default {
     "user": user,
     "chevronDown": chevronDown,
     "frame118": frame118,
-    "frame118_1": frame118_1,
+
     "frame198": frame198,
     "frame282": frame282,
     "frame303": frame303,
     "group": group,
     "group72": group72,
-    "group95": group95,
-    "headphonesSvg": headphonesSvg,
-    "image128": image128,
-    "inslallments": inslallments,
     "line7": line7,
     "line8": line8,
     "line10": line10,
@@ -47,7 +38,6 @@ export default {
     "rectangle2": rectangle2,
     "rectangle3": rectangle3,
     "shoppingCart": shoppingCart,
-    "vector": vector,
-    "vector1": vector1,
-    "visa": visa
+    "libro": libro,
+    "cerrar": cerrar
 };
