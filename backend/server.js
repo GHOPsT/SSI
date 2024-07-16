@@ -156,18 +156,25 @@ app.get('/estados', (req, res) => {
 });
 
 
-// Ruta para obtener los datos de los juegos y enviarlos a la ruta /venta-nuevos 
-app.get('/venta-nuevos', (req, res) => {
-  const SQL = 'SELECT * FROM juegos WHERE estado_id = 1';
-  DB.query(SQL, (err, rows) => {
+app.get('/perfil/:id', (req, res) => {
+  const { id } = req.params;
+  const query = 'SELECT Nombre, Apellido, Email, role FROM usuarios WHERE ID_Usuario = ?';
+
+  DB.query(query, [id], (err, result) => {
     if (err) {
-      console.error('Error executing query:', err);
-      res.status(500).json({ error: 'Error executing query' });
+      console.error('Error fetching user profile:', err);
+      res.status(500).json({ error: 'Error fetching user profile' });
       return;
     }
-    res.json(rows);
+
+    if (result.length > 0) {
+      res.json(result[0]);
+    } else {
+      res.status(404).json({ error: 'Usuario no encontrado' });
+    }
   });
 });
+
 
 app.get('/venta-usados', (req, res) => {
   const SQL = 'SELECT * FROM juegos WHERE estado_id = 2';

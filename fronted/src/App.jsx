@@ -5,7 +5,7 @@ import React from 'react';
 import IniciarSesion from './pages/IniciarSesion/IniciarSesion.js';
 import Registrarse from './pages/Registrarse/Registrarse.js';
 import Inicio from "./pages/Inicio/Inicio.js";
-import NuevosJuegos from "./pages/VentaNuevos/VentaNuevos.js";
+import Perfil from "./pages/PerfilUser/PerfilUsuario.js";
 import VentaUsados from "./pages/VentaUsados/VentaUsados.js";
 import VentaDatos from "./pages/VentaDatos/VentaDatos.js";
 import VentaFinal from "./pages/VentaFinal/VentaFinal.js";
@@ -45,7 +45,7 @@ function App() {
         <Route path="/venta-final" element={<ProtectedRoute><VentaFinal /></ProtectedRoute>} />
         <Route path="/venta-datos" element={<ProtectedRoute><VentaDatos /></ProtectedRoute>} />
         <Route path="/venta-usados" element={<ProtectedRoute><VentaUsados /></ProtectedRoute>} />
-        <Route path="/venta-nuevos" element={<ProtectedRoute><NuevosJuegos /></ProtectedRoute>} />
+        <Route path="/perfil" element={<ProtectedRoute><Perfil /></ProtectedRoute>} />
         <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/historial" element={<ProtectedRoute><HistorialDeCompras /></ProtectedRoute>} />
         <Route path="/iniciar-sesion" element={<IniciarSesion />} />
