@@ -25,6 +25,7 @@ import shoppingCart from "./img/shopping-cart.svg";
 import user from "./img/user.svg";
 import vector from "./img/vector.svg";
 import vector1 from "./img/vector-1.svg";
+import perfil from "./img/perfil.png";
 
 export default {
     "capturaDePantalla202311080901351": capturaDePantalla202311080901351,
@@ -53,5 +54,7 @@ export default {
     "shoppingCart": shoppingCart,
     "user": user,
     "vector": vector,
-    "vector1": vector1
+    "vector1": vector1,
+    "perfil": perfil
+
 };

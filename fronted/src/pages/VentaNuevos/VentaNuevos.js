@@ -3,7 +3,9 @@ import './globals.css';
 import './style.css';
 import Header from '../../common/header/header.js';
 import axios from 'axios';
+import imagenes from './imagenes.js';
 import { Link } from 'react-router-dom';
+import { ObtenerUsuario } from '../IniciarSesion/UsuarioGuardado.js';
 import CarritoCompras from '../CarritoCompras';
 
 const NuevosJuegos = () => {
@@ -27,27 +29,6 @@ const NuevosJuegos = () => {
       .catch(error => console.error('Error fetching selected games:', error));
   }, []);
 
-  const handleComprarClick = (juegoId) => {
-    const juegoSeleccionado = juegos.find(juego => juego.juego_id === juegoId); 
-    if (juegoSeleccionado) {
-      eliminarJuegos();
-      const juegoExistente = juegosSeleccionados.find(juego => juego.juego_id === juegoId);
-      let nuevosJuegosSeleccionados;
-      if (juegoExistente) {
-        nuevosJuegosSeleccionados = juegosSeleccionados.map(juego =>
-          juego.juego_id === juegoId ? { ...juego, cantidad: juego.cantidad + 1 } : juego
-        );
-      } else {
-        nuevosJuegosSeleccionados = [...juegosSeleccionados, { ...juegoSeleccionado, cantidad: 1 }];
-      }
-      setJuegosSeleccionados(nuevosJuegosSeleccionados);
-      setIsDropdownVisible(true);
-      actualizarJuegosSeleccionados(nuevosJuegosSeleccionados);
-      setMostrarCarrito(true);  // Actualiza el estado para mostrar el carrito
-      setCarritoKey(prevKey => prevKey + 1); // Incrementa la clave del carrito para forzar re-render
-    }
-  };
-
   const handleRemoverJuego = (juegoId) => {
     const juegoExistente = juegosSeleccionados.find(juego => juego.juego_id === juegoId);
     let nuevosJuegosSeleccionados;
@@ -67,18 +48,24 @@ const NuevosJuegos = () => {
     setCarritoKey(prevKey => prevKey + 1); // Incrementa la clave del carrito para forzar re-render
   };
 
-  const eliminarJuegos = () => {
-    axios.delete('http://localhost:3001/juegos-seleccionados')
-      .then(response => console.log(response.data))
-      .catch(error => console.error('Error deleting selected games:', error));
-    setJuegosSeleccionados([]);
-  };
-
-  const actualizarJuegosSeleccionados = (juegosSeleccionados) => {
-    axios.post('http://localhost:3001/juegos-seleccionados', juegosSeleccionados)
-      .then(response => console.log(response.data))
-      .catch(error => console.error('Error updating selected games:', error));
-  };
+  const PerfilUsuario = () => {
+    const [userData, setUserData] = useState({});
+  
+    useEffect(() => {
+      const fetchUserData = async () => {
+        const ID_Usuario = ObtenerUsuario();
+        if (!ID_Usuario) {
+          console.error('Usuario no encontrado');
+          return;
+        }
+        try {
+          const response = await fetch(`http://localhost:3001/perfil/${ID_Usuario}`);
+          const data = await response.json();
+          setUserData(data);
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      }
 
   return (
     <div>
@@ -91,24 +78,16 @@ const NuevosJuegos = () => {
       <div className='venta-usados'>
         <div className='div'>
           <div className='frame'>
-            <h1>Nuevos Juegos</h1>
-            {error && <p>{error}</p>}
-            <ul className="juegos-grid">
-              {juegos.map(juego => (
-                <li key={juego.juego_id} className="juego-item">
-                  <div className="videojuego">
-                    <div className="text-wrapper">{juego.titulo}</div>
-                    <Link to={`/detalle-producto/${juego.juego_id}`} className="frame-3">
-                      <img className="rectangle" src={`http://localhost:3001/uploads/${juego.titulo}`} alt={juego.titulo} />
-                    </Link>
-                    <div className="div-wrapper">Precio: {juego.precio}</div>
-                    <div> 
-                      <button className="text-wrapper-3" onClick={() => handleComprarClick(juego.juego_id)}>Comprar</button>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <div className="perfil-usuario">
+              <div className="perfil-icono">
+                <img src={imagenes.perfil} alt="User Icon" />
+              </div>
+              <div className="perfil-detalles">
+                <div><strong>Nombre:</strong> {userData.Nombre}</div>
+                <div><strong>Apellido:</strong> {userData.Apellido}</div>
+                <div><strong>Email:</strong> {userData.Email}</div>
+              </div>
+           </div>
           </div>
         </div>
       </div>
@@ -123,6 +102,5 @@ const NuevosJuegos = () => {
       )}
     </div>
   );
-};
 
 export default NuevosJuegos;
