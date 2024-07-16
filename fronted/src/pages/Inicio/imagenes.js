@@ -22,7 +22,6 @@ import shoppingCart from "./img/shopping-cart.svg";
 import user from "./img/user.svg";
 import vector from "./img/vector.svg";
 import vector1 from "./img/vector-1.svg";
-import visa from "./img/visa.png";
 import slide2 from "./img/slide2.png";
 import slide3 from "./img/slide3.png";
 import slide4 from "./img/slide4.png";
@@ -55,7 +54,6 @@ export default {
     "shoppingCart": shoppingCart,
     "vector": vector,
     "vector1": vector1,
-    "visa": visa,
     "slide2":slide2,
     "slide3":slide3,
     "slide4":slide4,
