@@ -21,14 +21,11 @@ const DB = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'ux',
+  database: 'siire',
 });
-
 
 DB.connect((err) => {
   if (err) {
-    console.error('Error connecting to database:', err);
-    return;
     console.error('Error connecting to database:', err);
     return;
   }
@@ -36,15 +33,16 @@ DB.connect((err) => {
 });
 
 app.post('/registrarse', (req, res) => {
-  const { nombre_usuario, correo, contrasena, apellido } = req.body;
+  const { ID_Usuario, Contrasenia, Nombre, Apellido, Email} = req.body;
+  const role = 'Estudiante';
   console.log('Datos recibidos:', req.body);
+  const query = 'INSERT INTO usuarios (ID_Usuario, Contrasenia, Nombre, Apellido, Email, role) VALUES (?, ?, ?, ?, ?, ?)';
+  
+  const values = [ID_Usuario, Contrasenia, Nombre, Apellido, Email, role];
 
-  const SQL = 'INSERT INTO usuarios (nombre_usuario, contrasena, correo, apellido) VALUES (?, ?, ?, ?)';
-  const values = [nombre_usuario, contrasena, correo, apellido];
-
-  DB.query(SQL, values, (err, result) => {
+  DB.query(query, values, (err, result) => {
     if (err) {
-      console.error('Error executing query:', err);
+      console.error('Error Registrando usuario:', err);
       res.status(500).json({ error: 'Error executing query' });
       return;
     }

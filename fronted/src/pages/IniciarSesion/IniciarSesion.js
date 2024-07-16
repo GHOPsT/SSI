@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Importa useNavigate
 import './globals.css';
 import './style.css';
-import mailSvg from './img/mail.svg';
-import lockSvg from './img/lock.svg';
-import frame444Svg from './img/frame-444.svg';
-import bienvenidoASvg from './img/bienvenido-a-gamecycle-com.png';
-import vectorSvg from './img/vector.svg';
+import userpng from './img/usuario.png';
+import contraseniapng from './img/contrasenia.png';
 import GuardarUsuario from './UsuarioGuardado';
 
 const IniciarSesion = () => {
@@ -49,21 +46,12 @@ const IniciarSesion = () => {
                   <div className="frame-2">
                     <input
                       className="correo-electrnico"
-                      placeholder="ejemplo@gmail.com"
+                      placeholder="Usuario"
                       value={nombre_usuario}
                       onChange={(e) => setNombre_usuario(e.target.value)}
                     />
-                    <img className="mail" src={mailSvg} alt="mail" />
+                    <img className="mail" src={userpng} alt="mail" />
                   </div>
-                  <div className="frame-3">
-                    <div className="frame-4">
-                      <input type="checkbox" id="rememberPassword" name="rememberPassword" />
-                      <label className="text-wrapper-3" htmlFor="rememberPassword">Recordar contraseña</label>
-                    </div>
-                    <div className="text-wrapper-4">Olvidé mi contraseña</div>
-                  </div>
-                  <div className="text-wrapper-5">o conéctate con</div>
-                  <img className="frame-5" src={frame444Svg} alt="frame" />
                   <div className="frame-6">
                     <input
                       type="password"
@@ -72,21 +60,17 @@ const IniciarSesion = () => {
                       value={contrasena}
                       onChange={(e) => setContrasena(e.target.value)}
                     />
-                    <img className="lock" src={lockSvg} alt="lock" />
+                    <img className="lock" src={contraseniapng} alt="lock" />
                   </div>
-                  <div className="frame-7">
-                    <div className="overlap-2">
-                      <input type="submit" className="rectangle-2" value="Ingresar" />
-                    </div>
+                  <div className="button">
+                    <input type="submit" className="rectangle-2" value="Ingresar" />
                   </div>
                 </form>
               </div>
             </div>
           </div>
-          <img className="bienvenido-a" src={bienvenidoASvg} alt="bienvenido" />
           <div className="group-2">
-            <div className="text-wrapper-7">GAME CYCLE</div>
-            <img className="vector" src={vectorSvg} alt="vector" />
+            <div className="text-wrapper-7">Sistema Integral de Información y Recursos Educativos </div>
           </div>
         </div>
       </div>

@@ -5,27 +5,31 @@ import { Link } from 'react-router-dom';
 import imagenes from "./imagenes"
 
 const Registrarse = () => {
-  const [nombre_usuario, setNombre_usuario] = useState('');
-  const [correo, setCorreo] = useState('');
-  const [contrasena, setContrasena] = useState('');
-  const [apellido, setApellido] = useState('');
-
+  const [ID_Usuario, setUsuario] = useState('');
+  const [Contrasenia, setContrasena] = useState('');
+  const [Nombre, setNombre_usuario] = useState('');
+  const [Apellido, setApellido] = useState('');
+  const [Email, setCorreo] = useState('');
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Aquí puedes hacer la solicitud HTTP a tu servidor
     const response = await fetch('http://localhost:3001/registrarse', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nombre_usuario, correo, contrasena, apellido }),
+      body: JSON.stringify({ ID_Usuario, Contrasenia , Nombre, Apellido, Email}),
     });
     const data = await response.json();
-    // Mensaje de confirmación de registro
     alert(data.message);
   };
 
   return (
     <div className="registrarse">
       <div className="frame-wrapper">
+      <Link to="/iniciar-sesion" className='button-back'>
+        <div className="back-button-container">
+          <img src={imagenes.back} alt="Botón de regreso"/>
+        </div>
+      </Link>
         <form className="frame" onSubmit={handleSubmit}>
           <div className="div">
             <div className="text-wrapper">Registro</div>
@@ -33,45 +37,47 @@ const Registrarse = () => {
           </div>
           <div className="div-wrapper"><div className="text-wrapper-2">Rellena los siguientes campos</div></div>
           <div className="frame-2"><input
-            className="nombre-completo"
-            placeholder="Nombre Completo"
-            value={nombre_usuario}
-            onChange={(e) => setNombre_usuario(e.target.value)}
-          /> <img className="user" src={imagenes.user} alt="user" /></div>
+            className="box-txt"
+            placeholder="Usuario"
+            value={ID_Usuario}
+            onChange={(e) => setUsuario(e.target.value)}/> 
+            <img className="img" src={imagenes.user} alt="img" />
+          </div>
           <div className="frame-2"><input
-            className="e-mail"
-            placeholder="ejemplo@gmail.com"
-            value={correo}
-            onChange={(e) => setCorreo(e.target.value)}
-          /> <img className="mail" src={imagenes.mail} alt="mail" /></div>
+            className="box-txt"
+            placeholder="Nombre"
+            value={Nombre}
+            onChange={(e) => setNombre_usuario(e.target.value)}
+          /> <img className="img" src={imagenes.user} alt="img" />
+          </div>
+          <div className="frame-2"><input
+            className="box-txt"
+            placeholder="Apellido"
+            value={Apellido}
+            onChange={(e) => setApellido(e.target.value)}/> 
+            <img className="img" src={imagenes.user} alt="img" />
+          </div>
+          <div className="frame-2">
+            <input
+              className="box-txt"
+              placeholder="E-mail"
+              value={Email}
+              onChange={(e) => setCorreo(e.target.value)}
+            />
+            <img className="img" src={imagenes.mail} alt="img" />
+          </div>
           <div className="frame-2">
             <input
               type="password"
-              className="contrasea"
+              className="box-txt"
               placeholder='Contraseña'
-              value={contrasena}
-              onChange={(e) => setContrasena(e.target.value)}
-            />
-            <img className="lock" src={imagenes.lock} alt="lock" />
-            <div className="group">
-              <div className="overlap-group"><div className="ellipse"></div></div>
-            </div>
-          </div>
-          <div className="frame-2">
-            <input
-              type="text"
-              className="confirmar-contrasea"
-              placeholder="Apellido"
-              value={apellido}
-              onChange={(e) => setApellido(e.target.value)}
-            />
-            <div className="overlap-group-wrapper">
-              <div className="overlap-group"><div className="ellipse"></div></div>
-            </div>
-            <img className="img" src={imagenes.lock} alt="lock" />
+              value={Contrasenia}
+              onChange={(e) => setContrasena(e.target.value)}/>
+              <img className="img" src={imagenes.lock} alt="img" />
           </div>
           <div className="frame-3">
-            <button type="submit">Registrarse</button>          </div>
+            <button type="submit" className="rectangle-2">Registrarse</button>        
+          </div>
         </form>
       </div>
     </div>
