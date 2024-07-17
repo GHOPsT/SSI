@@ -109,56 +109,6 @@
     left: 0;
   }
   
-  .inicio .frame-14 {
-    position: absolute;
-    width: 534px;
-    height: 39px;
-    top: 14px;
-    left: 360px;
-    background-color: #ffffff;
-    border-radius: 6px;
-  }
-  
-  .inicio .buscar-producto {
-    position: absolute;
-    width: 300px;
-    height: 20px;
-    top: 8px;
-    left: 174px;
-    background-color: transparent;
-    font-family: "Actor", Helvetica;
-    font-weight: 400;
-    color: #000000;
-    font-size: 16px;
-    letter-spacing: 0;
-    line-height: normal;
-    border: 0;
-    padding: 0;
-  }
-  
-  .inicio .overlap-group-2 {
-    position: absolute;
-    width: 130px;
-    height: 35px;
-    top: 8px;
-    left: 18px;
-  }
-  
-  .inicio .text-wrapper-9 {
-    position: absolute;
-    height: 23px;
-    top: 0;
-    left: -10px;
-    font-family: "Actor", Helvetica;
-    font-weight: 400;
-    color: #aba3a3;
-    font-size: 13px;
-    letter-spacing: 0;
-    line-height: normal;
-    border: none;
-    outline: none;
-  }
-  
   .inicio .chevron-down {
     position: absolute;
     width: 24px;
@@ -167,23 +117,6 @@
     left: 104px;
   }
   
-  .inicio .line-5 {
-    position: absolute;
-    width: 1px;
-    height: 38px;
-    top: 0;
-    left: 156px;
-    object-fit: cover;
-  }
-  
-  .inicio .frame-15 {
-    position: absolute;
-    width: 43px;
-    height: 38px;
-    top: 0;
-    left: 490px;
-  }
-
   .inicio .text-wrapper-15 {
     left: 220px;
     position: absolute;

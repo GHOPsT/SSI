@@ -11,13 +11,14 @@ import { Card, Col, Row } from 'antd';
 
 const Biblioteca = () => {
     const [libros, setLibros] = useState([]);
-    const [genero, setGenero] = useState('');
+    const [generos, setGeneros] = useState('');
     const [error, setError] = useState(null);
-    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedGenero, setSelectedGenero] = useState('');
     const navigate = useNavigate();
   
     useEffect(() => {
       fetchLibros();
+      fetchGeneros();
     }, []);
   
     const fetchLibros = async () => {
@@ -29,24 +30,19 @@ const Biblioteca = () => {
       }
     };
 
-    const handleCategoryChange = (e) => {
-      const categoryId = e.target.value;
-      setSelectedCategory(categoryId);
-    };
-  
-    const handleImageClick = () => {
-      if (selectedCategory) {
-        navigate('');
-      } else {
-        alert('Por favor, selecciona una categoría primero');
+    const fetchGeneros = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/generos');
+        setGeneros(response.data);
+      } catch (error) {
+        setError('Error fetching genres:', error);
       }
     };
-
 
     const handleSearch = async (event) => {
       event.preventDefault();
       try {
-        const response = await axios.get(`http://localhost:3001/libros?genero=${genero}`);
+        const response = await axios.get(`http://localhost:3001/libros?genero=${generos}`);
         setLibros(response.data);
       } catch (error) {
         setError('Error searching books:', error);
@@ -58,6 +54,30 @@ const Biblioteca = () => {
         <Header />
         <div className='venta-usados'>
           <div className='div'>
+          <form onSubmit={handleSearch} className="search-bar">
+            <input
+              type="text"
+              placeholder="Buscar libro"
+              className="search-input"
+            />
+            <select
+              id="genero"
+              name="genero"
+              className="text-wrapper-9"
+              value={selectedGenero}
+              onChange={(e) => setSelectedGenero(e.target.value)}
+            >
+              <option value="">Selecciona un género</option>
+              {generos.map((genero, index) => (
+                <option key={index} value={genero.Genero}>
+                  {genero.Genero}
+                </option>
+              ))}
+            </select>
+            <button type="submit" className="search-button">
+              Buscar
+            </button>
+          </form>
             <div className="frame-14">
               <input className="buscar-libro" placeholder="Buscar libro" />
               <div className="overlap-group-2">
@@ -65,14 +85,18 @@ const Biblioteca = () => {
                   id="genero"
                   name="genero"
                   className="text-wrapper-9"
-                  value={selectedCategory}
-                  onChange={handleCategoryChange}
+                  value={selectedGenero}
+                  onChange={(e) => setSelectedGenero(e.target.value)}
                 >
-                  <option value="" disabled>Selecciona un género</option>
+                  <option value="">Selecciona un género</option>
+                    {generos.map((genero, index) => (
+                      <option key={index} value={genero.Genero}>
+                        {genero.Genero}
+                  </option>
+                    ))}
                 </select>
-              </div>
-              <img className="line-5" src={imagenes.line7} alt="Line" />
-              <img className="frame-15" src={imagenes.frame198} alt="Buscar" onClick={handleImageClick} />
+              </div>  
+              <img className="frame-15" src={imagenes.frame198} alt="Buscar"/>
             </div>
             <div className="libros-grid">
               {error && <p>{error}</p>}
@@ -80,9 +104,11 @@ const Biblioteca = () => {
                 <div key={libro.Id_Libro} className="libro-item">
                   <div className="libro-card">
                       <div style={{ background: '#ECECEC', padding: '30px' }}>
-                            <Card title={libro.Nombre} bordered={false}>{libro.Descripcion}</Card>
+                            <Card title={libro.Nombre} bordered={false}>
+                              {libro.Descripcion}
+                            </Card>
                       </div>
-                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQB-Y6FV3j6wwZp1ptUM3fpJVNg8lpwBYRNg&s'></img>
+                      <img src={`http://localhost:3001/uploads/${libro.Imagen}`} alt={libro.Nombre} />
 
                     </div>
                 </div>

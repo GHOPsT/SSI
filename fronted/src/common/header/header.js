@@ -98,29 +98,9 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
             <div className="text-wrapper-8">SIIRE</div>
             <img className="vector" src={imagenes.libro} alt="Logo" />
           </div>
-          <div className="frame-14">
-            <input className="buscar-producto" placeholder="Buscar producto" />
-            <div className="overlap-group-2">
-              <select
-                id="category_id"
-                name="category_id"
-                className="text-wrapper-9"
-                value={selectedCategory}
-                onChange={handleCategoryChange}
-              >
-                <option value="" disabled>Selecciona un género</option>
-                {categories.map(category => (
-                  <option key={category.categoria_id} value={category.categoria_id}>
-                    {category.nombre}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <img className="line-5" src={imagenes.line7} alt="Line" />
-            <img className="frame-15" src={imagenes.frame198} alt="Buscar" onClick={handleImageClick} />
-          </div>
+
           <div className="frame-24">
-            <Link to="/historial" >
+            <Link to="/perfil" >
             <img className="user" src={imagenes.user} alt="User" />
             </Link>
             <div className="frame-25">

@@ -94,6 +94,19 @@ app.get('/libros', (req, res) => {
   });
 });
 
+// Add this route to fetch unique genres
+app.get('/generos', (req, res) => {
+  const sql = 'SELECT DISTINCT Genero FROM libros';
+  DB.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).send('Error fetching genres');
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
 // Configuración de Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
