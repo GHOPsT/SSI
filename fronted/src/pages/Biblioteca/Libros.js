@@ -79,26 +79,11 @@ const Biblioteca = () => {
               {libros.map(libro => (
                 <div key={libro.Id_Libro} className="libro-item">
                   <div className="libro-card">
-                    <img
-                      src={`http://localhost:3001/uploads/${libro.Nombre}.jpg`}
-                      alt={libro.Nombre}
-                      className="libro-imagen"
-                      onError={(e) => e.target.src = 'http://localhost:3001/uploads/default.jpg'} // Default image
-                    />
-                    <h3>{libro.Nombre}</h3>
                       <div style={{ background: '#ECECEC', padding: '30px' }}>
-                        <Row gutter={16}>
-                          <Col span={8}>
-                            <Card title="Card title" bordered={false}>Card content</Card>
-                          </Col>
-                          <Col span={8}>
-                            <Card title="Card title" bordered={false}>Card content</Card>
-                          </Col>
-                          <Col span={8}>
-                            <Card title="Card title" bordered={false}>Card content</Card>
-                          </Col>
-                        </Row>
+                            <Card title={libro.Nombre} bordered={false}>{libro.Descripcion}</Card>
                       </div>
+                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQB-Y6FV3j6wwZp1ptUM3fpJVNg8lpwBYRNg&s'></img>
+
                     </div>
                 </div>
               ))}

@@ -109,4 +109,33 @@
   height: 35px
 }
 
+.frame-14 {
+  position: absolute;
+  width: 534px;
+  height: 39px;
+  top: 14px;
+  left: 360px;
+  background-color: #ffffff;
+  border-radius: 6px;
+}
+
+.libro-card {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  height: 320px;
+}
+
+.libro-card div{
+  width: 200px;
+}
+
+.libros-grid{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
 

@@ -44,10 +44,10 @@ import Footer from '../../common/footer/footer.js';
                 <img src={imagenes.perfil} alt="User Icon" />
               </div>
               <div className="perfil-detalles">
-                <div><strong>Nombre:</strong> {perfil.Nombre}</div>
-                <div><strong>Apellido:</strong> {perfil.Apellido}</div>
-                <div><strong>Email:</strong> {perfil.Email}</div>
-                <div><strong>Role:</strong> {perfil.role}</div>
+                <div><strong className='etiqueta'>Nombre:</strong> <input value={perfil.Nombre} disabled /></div>
+                <div><strong className='etiqueta'>Apellido:</strong> <input value={perfil.Apellido} disabled /> </div>
+                <div><strong className='etiqueta'>Email:</strong> <input value={perfil.Email} disabled /> </div>
+                <div><strong className='etiqueta'>Role:</strong> <input value={perfil.role} disabled /> </div>
               </div>
           </div>
         </div>
