@@ -6,7 +6,7 @@ import IniciarSesion from './pages/IniciarSesion/IniciarSesion.js';
 import Registrarse from './pages/Registrarse/Registrarse.js';
 import Inicio from "./pages/Inicio/Inicio.js";
 import Perfil from "./pages/PerfilUser/PerfilUsuario.js";
-import VentaUsados from "./pages/VentaUsados/VentaUsados.js";
+import Biblioteca from "./pages/Biblioteca/Libros.js";
 import VentaDatos from "./pages/VentaDatos/VentaDatos.js";
 import VentaFinal from "./pages/VentaFinal/VentaFinal.js";
 import VentaFuncionalidadDelCodigo from "./pages/VentaFuncionalidadDelCodigo/VentaFuncionalidadDelCodigo.js";
@@ -44,7 +44,7 @@ function App() {
         <Route path="/venta-funcionalidad" element={<ProtectedRoute><VentaFuncionalidadDelCodigo /></ProtectedRoute>} />
         <Route path="/venta-final" element={<ProtectedRoute><VentaFinal /></ProtectedRoute>} />
         <Route path="/venta-datos" element={<ProtectedRoute><VentaDatos /></ProtectedRoute>} />
-        <Route path="/venta-usados" element={<ProtectedRoute><VentaUsados /></ProtectedRoute>} />
+        <Route path="/biblioteca" element={<ProtectedRoute><Biblioteca /></ProtectedRoute>} />
         <Route path="/perfil" element={<ProtectedRoute><Perfil /></ProtectedRoute>} />
         <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/historial" element={<ProtectedRoute><HistorialDeCompras /></ProtectedRoute>} />

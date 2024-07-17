@@ -80,6 +80,20 @@ app.post('/iniciar-sesion', (req, res) => {
   });
 });
 
+app.get('/libros', (req, res) => {
+  let sql = 'SELECT * FROM libros';
+  if (req.query.genero) {
+    sql += ` WHERE Genero = ${mysql.escape(req.query.genero)}`;
+  }
+  DB.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).send('Error fetching books');
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 // Configuración de Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

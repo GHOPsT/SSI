@@ -1,7 +1,7 @@
 //C:\Users\PROGRESA HUACHIPA\OneDrive\Escritorio\ProyectoUXFinal\ProjectUX\fronted\src\pages\CarritoCompras.js
 import React, { useState } from 'react';
 import Header from '../common/header/header.js';
-import VentaUsados from './VentaUsados/VentaUsados.js';
+import Biblioteca from './Biblioteca/Libros.js';
 
 
 const CarritoCompras = ({ juegosSeleccionados, handleRemoverJuego, isDropdownVisible, setIsComprasDropdownVisible }) => {
