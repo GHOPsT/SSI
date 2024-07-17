@@ -94,17 +94,24 @@ app.get('/libros', (req, res) => {
   });
 });
 
-// Add this route to fetch unique genres
-app.get('/generos', (req, res) => {
-  const sql = 'SELECT DISTINCT Genero FROM libros';
+// Ruta exclusiva para la barra de búsqueda
+app.get('/buscar-libro', (req, res) => {
+  const nombre = req.query.nombre;
+  if (!nombre) {
+    return res.status(400).send('El nombre del libro es requerido');
+  }
+
+  const sql = `SELECT * FROM libros WHERE Nombre = ${mysql.escape(nombre)}`;
+
   DB.query(sql, (err, result) => {
     if (err) {
-      res.status(500).send('Error fetching genres');
+      return res.status(500).send('Error fetching book');
     } else {
-      res.json(result);
+      return res.json(result);
     }
   });
 });
+
 
 
 // Configuración de Multer

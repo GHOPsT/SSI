@@ -4,120 +4,102 @@ import './style.css';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../common/header/header.js';
 import axios from 'axios';
-import CarritoCompras from '../CarritoCompras.js';
 import imagenes from './imagenes.js';
-import { Card, Col, Row } from 'antd';
-
+import { Card } from 'antd';
 
 const Biblioteca = () => {
     const [libros, setLibros] = useState([]);
-    const [generos, setGeneros] = useState('');
+    const [genero, setGenero] = useState('');
+    const [busqueda, setBusqueda] = useState('');
     const [error, setError] = useState(null);
-    const [selectedGenero, setSelectedGenero] = useState('');
     const navigate = useNavigate();
-  
+
     useEffect(() => {
-      fetchLibros();
-      fetchGeneros();
+        fetchLibros();
     }, []);
-  
+
     const fetchLibros = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/libros');
-        setLibros(response.data);
-      } catch (error) {
-        setError('Error fetching books:', error);
-      }
+        try {
+            const response = await axios.get('http://localhost:3001/libros');
+            setLibros(response.data);
+        } catch (error) {
+            setError('Error fetching books:', error);
+        }
     };
 
-    const fetchGeneros = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/generos');
-        setGeneros(response.data);
-      } catch (error) {
-        setError('Error fetching genres:', error);
-      }
+    const handleCategoryChange = (e) => {
+        setGenero(e.target.value);
     };
 
-    const handleSearch = async (event) => {
-      event.preventDefault();
-      try {
-        const response = await axios.get(`http://localhost:3001/libros?genero=${generos}`);
-        setLibros(response.data);
-      } catch (error) {
-        setError('Error searching books:', error);
-      }
+    const handleSearchChange = (e) => {
+        setBusqueda(e.target.value);
+    };
+
+    const handleImageClick = async () => {
+        let url = 'http://localhost:3001/libros?';
+        if (genero) {
+            url += `genero=${genero}&`;
+        }
+        if (busqueda) {
+            url += `nombre=${busqueda}`;
+        }
+        try {
+            const response = await axios.get(url);
+            const filteredBooks = response.data.filter(libro => 
+              (!genero || libro.genero === genero) && 
+              (!busqueda || libro.Nombre.toLowerCase() === busqueda.toLowerCase())
+          );
+            setLibros(response.data.sort((a, b) => a.Id_Libro - b.Id_Libro));
+        } catch (error) {
+            setError('Error searching books:', error);
+        }
     };
 
     return (
-      <div>
-        <Header />
-        <div className='venta-usados'>
-          <div className='div'>
-          <form onSubmit={handleSearch} className="search-bar">
-            <input
-              type="text"
-              placeholder="Buscar libro"
-              className="search-input"
-            />
-            <select
-              id="genero"
-              name="genero"
-              className="text-wrapper-9"
-              value={selectedGenero}
-              onChange={(e) => setSelectedGenero(e.target.value)}
-            >
-              <option value="">Selecciona un género</option>
-              {generos.map((genero, index) => (
-                <option key={index} value={genero.Genero}>
-                  {genero.Genero}
-                </option>
-              ))}
-            </select>
-            <button type="submit" className="search-button">
-              Buscar
-            </button>
-          </form>
-            <div className="frame-14">
-              <input className="buscar-libro" placeholder="Buscar libro" />
-              <div className="overlap-group-2">
-                <select
-                  id="genero"
-                  name="genero"
-                  className="text-wrapper-9"
-                  value={selectedGenero}
-                  onChange={(e) => setSelectedGenero(e.target.value)}
-                >
-                  <option value="">Selecciona un género</option>
-                    {generos.map((genero, index) => (
-                      <option key={index} value={genero.Genero}>
-                        {genero.Genero}
-                  </option>
-                    ))}
-                </select>
-              </div>  
-              <img className="frame-15" src={imagenes.frame198} alt="Buscar"/>
-            </div>
-            <div className="libros-grid">
-              {error && <p>{error}</p>}
-              {libros.map(libro => (
-                <div key={libro.Id_Libro} className="libro-item">
-                  <div className="libro-card">
-                      <div style={{ background: '#ECECEC', padding: '30px' }}>
-                            <Card title={libro.Nombre} bordered={false}>
-                              {libro.Descripcion}
-                            </Card>
-                      </div>
-                      <img src={`http://localhost:3001/uploads/${libro.Imagen}`} alt={libro.Nombre} />
-
+        <div>
+            <Header />
+            <div className='venta-usados'>
+                <div className='div'>
+                    <div className="frame-14">
+                        <input 
+                            className="buscar-libro" 
+                            placeholder="Buscar libro" 
+                            value={busqueda} 
+                            onChange={handleSearchChange} 
+                        />
+                        <div className="overlap-group-2">
+                            <select
+                                id="genero"
+                                name="genero"
+                                className="text-wrapper-9"
+                                value={genero}
+                                onChange={handleCategoryChange}
+                            >
+                                <option value="" disabled>Selecciona un género</option>
+                                <option value="Ficcion">Ficción</option>
+                                <option value="No ficcion">No ficción</option>
+                            </select>
+                        </div>
+                        <img className="line-5" src={imagenes.line7} alt="Line" />
+                        <img className="frame-15" src={imagenes.frame198} alt="Buscar" onClick={handleImageClick} />
+                    </div>
+                    <div className="libros-grid">
+                        {error && <p>{error}</p>}
+                        {libros.map(libro => (
+                            <div key={libro.Id_Libro} className="libro-item">
+                                <div className="libro-card">
+                                    <div style={{ background: '#ECECEC', padding: '30px' }}>
+                                        <Card title={libro.Nombre} bordered={false}>{libro.Descripcion}</Card>
+                                    </div>
+                                    <img src={libro.Imagen} alt={libro.Nombre} />
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-              ))}
             </div>
-          </div>
         </div>
-      </div>
     );
-  };
+};
 
 export default Biblioteca;

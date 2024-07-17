@@ -131,6 +131,7 @@
 }
 
 .libros-grid{
+  margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

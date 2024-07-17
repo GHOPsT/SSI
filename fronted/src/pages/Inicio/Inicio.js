@@ -16,7 +16,6 @@ const Inicio = () => {
     juegosSeleccionados,
     isDropdownVisible,
     setIsDropdownVisible,
-    mostrarCarrito,
     carritoKey,
     handleRemoverJuego
   } = useCarrito();
@@ -50,9 +49,6 @@ console.log(usuario);
           </div>
           <div className="overlap">
             <img className="group" src={imagenes.group72} alt="" />
-            <Link to={"/venta-nuevos"} >
-              <img className="img" src={imagenes.frame282} alt="" />
-            </Link>
             <img className="line" src={imagenes.line8} alt="" />
             <div className="frame-2">
               <div className="frame-3">
@@ -74,15 +70,6 @@ console.log(usuario);
             </div>
           </div>
         </div>
-        {mostrarCarrito && (
-          <CarritoCompras
-            key={carritoKey}
-            juegosSeleccionados={juegosSeleccionados}
-            handleRemoverJuego={handleRemoverJuego}
-            isDropdownVisible={isDropdownVisible}
-            setIsComprasDropdownVisible={setIsDropdownVisible}
-          />
-        )}
       </div>
     </div>
   );
