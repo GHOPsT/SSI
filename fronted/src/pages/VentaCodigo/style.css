@@ -29,87 +29,6 @@
   border-radius: 40px;
 }
 
-.venta-cdigo .text-wrapper {
-  position: relative;
-  align-self: stretch;
-  height: 40px;
-  font-family: "Actor", Helvetica;
-  font-weight: 400;
-  color: #000000;
-  font-size: 48px;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: 32px;
-}
-
-.venta-cdigo .shopify {
-  position: relative;
-  width: 100px;
-  height: 100px;
-}
-
-.venta-cdigo .TITULO {
-  display: flex;
-  flex-direction: column;
-  width: 355px;
-  align-items: flex-start;
-  gap: 4px;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.venta-cdigo .label {
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  flex: 0 0 auto;
-}
-
-.venta-cdigo .label-2 {
-  position: relative;
-  flex: 1;
-  margin-top: -1px;
-  font-family: "Actor", Helvetica;
-  font-weight: 400;
-  color: #000000;
-  font-size: 14px;
-  letter-spacing: 0;
-  line-height: 22px;
-}
-
-.venta-cdigo .container {
-  padding: 8px 16px;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  background-color: #ffffff;
-  border-radius: 8px;
-  border: 1px solid;
-  border-color: #000000;
-  flex: 1;
-  flex-grow: 1;
-  margin-top: -1px;
-  font-family: "Inter", Helvetica;
-  font-weight: 400;
-  color: #7a7a7a;
-  font-size: 16px;
-  letter-spacing: 0;
-  line-height: 24px;
-}
-
-.venta-cdigo .frame {
-  display: flex;
-  width: 85px;
-  height: 35px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-  background-color: #14adb6;
-  transition: all 0.2s ease;
-}
 
 .venta-cdigo .text-wrapper-2 {
   position: relative;
@@ -124,11 +43,6 @@
   border: none;
   background-color: transparent;
   cursor: pointer; /* Cambia el cursor al pasar por encima */
-}
-
-.venta-cdigo .para-qu-sirve-el {
-  position: relative;
-  flex: 0 0 auto;
 }
 
 .venta-cdigo .frame-2 {

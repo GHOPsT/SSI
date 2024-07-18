@@ -112,7 +112,76 @@ app.get('/buscar-libro', (req, res) => {
   });
 });
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+// Ruta para registrar una pregunta en el foro
+app.post('/api/preguntas', (req, res) => {
+  const { ID_Usuario, Pregunta } = req.body;
+  const sql = 'INSERT INTO preguntas (ID_Usuario, Pregunta) VALUES (?, ?)';
+  DB.query(sql, [ID_Usuario, Pregunta], (err, result) => {
+    if (err) {
+      res.status(500).json({ error: 'Error al registrar la pregunta' });
+    } else {
+      res.status(201).json({ message: 'Pregunta registrada correctamente' });
+    }
+  });
+});
+
+// Ruta para obtener todas las preguntas del foro (ordenadas por fecha)
+app.get('/api/preguntas', (req, res) => {
+  const sql = `
+    SELECT preguntas.*, usuarios.Nombre, usuarios.Apellido 
+    FROM preguntas 
+    JOIN usuarios ON preguntas.ID_Usuario = usuarios.ID_Usuario 
+    ORDER BY FechaRegistro DESC
+  `;
+  DB.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: 'Error al obtener las preguntas' });
+    } else {
+      const preguntas = result;
+
+      const respuestasSql = `
+        SELECT respuestas.*, usuarios.Nombre, usuarios.Apellido 
+        FROM respuestas 
+        JOIN usuarios ON respuestas.ID_Usuario = usuarios.ID_Usuario 
+        WHERE respuestas.ID_Pregunta = ?
+        ORDER BY FechaRegistro
+      `;
+
+      const preguntasConRespuestas = preguntas.map(pregunta => {
+        return new Promise((resolve, reject) => {
+          DB.query(respuestasSql, [pregunta.ID_Pregunta], (err, respuestas) => {
+            if (err) {
+              reject(err);
+            } else {
+              pregunta.respuestas = respuestas;
+              resolve(pregunta);
+            }
+          });
+        });
+      });
+
+      Promise.all(preguntasConRespuestas)
+        .then(result => res.status(200).json(result))
+        .catch(error => res.status(500).json({ error: 'Error al obtener las respuestas' }));
+    }
+  });
+});
+
+// Ruta para registrar una respuesta a una pregunta
+app.post('/api/respuestas', (req, res) => {
+  const { ID_Pregunta, ID_Usuario, Respuesta } = req.body;
+  const sql = 'INSERT INTO respuestas (ID_Pregunta, ID_Usuario, Respuesta) VALUES (?, ?, ?)';
+  DB.query(sql, [ID_Pregunta, ID_Usuario, Respuesta], (err, result) => {
+    if (err) {
+      res.status(500).json({ error: 'Error al registrar la respuesta' });
+    } else {
+      res.status(201).json({ message: 'Respuesta registrada correctamente' });
+    }
+  });
+});
 
 // Configuración de Multer
 const storage = multer.diskStorage({

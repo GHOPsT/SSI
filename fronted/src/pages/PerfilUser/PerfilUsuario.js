@@ -6,7 +6,6 @@ import axios from 'axios';
 import imagenes from './imagenes.js';
 import { Link } from 'react-router-dom';
 import GuardarUsuario from '../IniciarSesion/UsuarioGuardado.js';
-import Footer from '../../common/footer/footer.js';
 
   const PerfilUsuario = () =>  {
     const [perfil, setPerfil] = useState(null);
