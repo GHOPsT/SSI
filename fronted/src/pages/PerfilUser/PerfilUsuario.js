@@ -53,7 +53,13 @@ const PerfilUsuario = () => {
         {perfil.role === 'Profesor' && (
           <div className="botones-profesor">
             <Link to="/insertar-libro" className="boton">Insertar Libro</Link>
+            <Link to="/gestor-solicitudes" className="boton">Ver Solicitudes</Link>
             <button className="boton">Otro Botón</button>
+          </div>
+        )}
+        {perfil.role === 'Estudiante' && (
+          <div className="botones-estudiante">
+            <Link to="/solicitud-estudiante" className="boton">Mandar Solicitud</Link>
           </div>
         )}
       </div>

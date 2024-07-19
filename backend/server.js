@@ -249,6 +249,104 @@ app.post('/subir-libro', upload.fields([{ name: 'Imagen' }, { name: 'Pdf' }]), a
   }
 });
 
+// Ruta para guardar solicitudes
+app.post('/solicitud', (req, res) => {
+  const { usuarioId, justificacion, fecha } = req.body;
+  const query = 'INSERT INTO solicitudes (ID_Usuario, Nombre, Fecha, Justificacion) VALUES (?, ?, ?, ?)';
+  
+  // Obtener nombre del usuario
+  DB.query('SELECT Nombre FROM usuarios WHERE ID_Usuario = ?', [usuarioId], (err, results) => {
+    if (err) {
+      console.error('Error fetching user name:', err);
+      res.status(500).json({ message: 'Error fetching user name' });
+      return;
+    }
+    
+    const nombre = results[0].Nombre;
+    
+    DB.query(query, [usuarioId, nombre, fecha, justificacion], (err) => {
+      if (err) {
+        console.error('Error inserting solicitud into database:', err);
+        res.status(500).json({ message: 'Error inserting solicitud into database' });
+        return;
+      }
+      res.json({ message: 'Solicitud enviada' });
+    });
+  });
+});
+
+// Ruta para obtener todas las solicitudes
+app.get('/solicitudes', (req, res) => {
+  const query = `
+    SELECT s.ID, s.ID_Usuario, u.Nombre, s.Fecha, s.Justificacion
+    FROM solicitudes s
+    JOIN usuarios u ON s.ID_Usuario = u.ID_Usuario
+  `;
+
+  DB.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching solicitudes:', err);
+      res.status(500).json({ message: 'Error fetching solicitudes' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+app.post('/responder-solicitud/:id', async (req, res) => {
+  const { id } = req.params;
+  const { aceptar } = req.body;
+
+  try {
+    // Verificar si la solicitud existe
+    const solicitud = await new Promise((resolve, reject) => {
+      DB.query('SELECT * FROM solicitudes WHERE ID = ?', [id], (err, results) => {
+        if (err) return reject(err);
+        resolve(results);
+      });
+    });
+
+    if (!solicitud || solicitud.length === 0) {
+      return res.status(404).json({ message: 'Solicitud no encontrada' });
+    }
+
+    // Obtener el ID de usuario y el nombre de la solicitud
+    const { ID_Usuario, Nombre } = solicitud[0];
+
+    if (aceptar) {
+      // Aceptar solicitud y cambiar rol a Profesor
+      await new Promise((resolve, reject) => {
+        DB.query('UPDATE usuarios SET role = ? WHERE ID_Usuario = ?', ['Profesor', ID_Usuario], (err) => {
+          if (err) return reject(err);
+          resolve();
+        });
+      });
+
+      // Eliminar la solicitud después de aceptarla
+      await new Promise((resolve, reject) => {
+        DB.query('DELETE FROM solicitudes WHERE ID = ?', [id], (err) => {
+          if (err) return reject(err);
+          resolve();
+        });
+      });
+
+      res.json({ message: `Solicitud aceptada. El usuario ${Nombre} ahora es Profesor.` });
+    } else {
+      // Rechazar solicitud (simplemente eliminarla)
+      await new Promise((resolve, reject) => {
+        DB.query('DELETE FROM solicitudes WHERE ID = ?', [id], (err) => {
+          if (err) return reject(err);
+          resolve();
+        });
+      });
+
+      res.json({ message: `Solicitud rechazada. El usuario ${Nombre} permanece como Estudiante.` });
+    }
+  } catch (error) {
+    console.error('Error al responder la solicitud:', error);
+    res.status(500).json({ message: 'Error al responder la solicitud' });
+  }
+});
 
 // Ruta para obtener las categorías
 app.get('/categorias', (req, res) => {
