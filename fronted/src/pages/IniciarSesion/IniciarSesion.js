@@ -32,6 +32,10 @@ const IniciarSesion = () => {
     }
   };
 
+  const irARegistrarse = () => {
+    navigate('/registrarse'); // Navega a la página de registro
+  };
+
   return (
     <div className="iniciar-sesin">
       <div className="group-wrapper">
@@ -41,7 +45,7 @@ const IniciarSesion = () => {
               <div className="rectangle"></div>
               <div className="div">
                 <div className="text-wrapper">Iniciar sesión</div>
-                <Link to="/registrarse" className="text-wrapper-2">Registrarse</Link>
+                <button onClick={irARegistrarse} className="text-wrapper-2">Registrarse</button>
                 <form className="frame" onSubmit={iniciarSesion}>
                   <div className="frame-2">
                     <input

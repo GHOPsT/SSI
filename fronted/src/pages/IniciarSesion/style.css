@@ -70,7 +70,13 @@
   letter-spacing: 0;
   line-height: normal;
   white-space: nowrap;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  z-index: 10;
 }
+
 
 .iniciar-sesin .frame-2 {
   position: absolute;
