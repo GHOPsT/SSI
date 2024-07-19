@@ -539,3 +539,26 @@
   margin-top: -37.5px;
   margin-bottom: -37.5px;
 }
+
+
+.contenedor-foro{
+  padding: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.registro-pregunta {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 60%;
+}
+
+.registro-pregunta textarea{
+  height: 300px;
+}
+
+.preguntas-respuestas{
+  width: 30%;
+}

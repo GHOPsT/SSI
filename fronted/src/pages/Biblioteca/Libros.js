@@ -55,6 +55,26 @@ const Biblioteca = () => {
         }
     };
 
+    const handleDownload = async (rutaPdf) => {
+        try {
+            const response = await axios({
+                url: `http://localhost:3001/descargar-pdf/${rutaPdf}`,
+                method: 'GET',
+                responseType: 'blob', // Indica que la respuesta es un archivo
+            });
+
+            // Crear una URL para el archivo descargado
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', rutaPdf.split('/').pop()); // Usar el nombre del archivo
+            document.body.appendChild(link);
+            link.click();
+        } catch (error) {
+            console.error('Error downloading PDF:', error);
+        }
+    };
+
     return (
         <div>
             <Header />
@@ -89,7 +109,12 @@ const Biblioteca = () => {
                             <div key={libro.Id_Libro} className="libro-item">
                                 <div className="libro-card">
                                     <div style={{ background: '#ECECEC', padding: '30px' }}>
-                                        <Card title={libro.Nombre} bordered={false}>{libro.Descripcion}</Card>
+                                        <Card title={libro.Nombre} bordered={false}>
+                                            {libro.Descripcion}
+                                            <button onClick={() => handleDownload(libro.Ruta_pdf)}>
+                                                Descargar PDF
+                                            </button>
+                                        </Card>
                                     </div>
                                     <img src={libro.Imagen} alt={libro.Nombre} />
                                 </div>

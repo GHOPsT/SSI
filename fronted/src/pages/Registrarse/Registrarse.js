@@ -31,10 +31,10 @@ const Registrarse = () => {
         </div>
       </Link>
         <form className="frame" onSubmit={handleSubmit}>
-          <div className="div">
+
             <div className="text-wrapper">Registro</div>
             <img className="line" src={imagenes.line} alt="line" />
-          </div>
+
           <div className="div-wrapper"><div className="text-wrapper-2">Rellena los siguientes campos</div></div>
           <div className="frame-2"><input
             className="box-txt"

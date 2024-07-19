@@ -348,6 +348,36 @@ app.post('/responder-solicitud/:id', async (req, res) => {
   }
 });
 
+// Ruta para descargar el PDF
+app.get('/descargar-pdf/:id', (req, res) => {
+  const { id } = req.params;
+  
+  // Obtener la ruta del archivo PDF desde la base de datos
+  const query = 'SELECT Ruta_pdf FROM libros WHERE ID_Libro = ?';
+  DB.query(query, [id], (err, results) => {
+    if (err) {
+      console.error('Error fetching PDF path:', err);
+      res.status(500).json({ message: 'Error fetching PDF path' });
+      return;
+    }
+    
+    if (results.length === 0) {
+      res.status(404).json({ message: 'Libro no encontrado' });
+      return;
+    }
+
+    const rutaPdf = results[0].Ruta_pdf;
+    
+    // Enviar el archivo PDF
+    res.download(rutaPdf, (err) => {
+      if (err) {
+        console.error('Error downloading PDF:', err);
+        res.status(500).json({ message: 'Error downloading PDF' });
+      }
+    });
+  });
+});
+
 // Ruta para obtener las categorías
 app.get('/categorias', (req, res) => {
   const SQL = 'SELECT categoria_id, nombre FROM categorias';

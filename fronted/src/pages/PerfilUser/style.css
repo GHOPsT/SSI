@@ -2,16 +2,12 @@
   background-color: #f6f6f6;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  gap: 20px;
+  padding: 40px;
 }
 
-.perfil-usuario .div {
-  background-color: #f6f6f6;
-  width: 1000px;
-  height: 500px;
-  position: relative;
-}
 
 .perfil-usuario .frame {
   text-align: center;
@@ -76,7 +72,6 @@
   height: 150px;
   border: 10px, solid, #14adb6;
   border-radius: 50%;
-  margin-top: 50px;
 }
 
 .perfil-detalles {
@@ -127,4 +122,5 @@
 .boton:hover {
   background-color: #0056b3;
 }
+
 

@@ -61,15 +61,11 @@ const InsertarLibro = () => {
       <Header/>
 
       <div className="pago-con-tarjeta">
-        <div className="div">
-          
-        </div>
+
         <div className="frame-14">
-        <Link to="/perfil" className="boton">Regresar</Link>
-          <div className="frame-2">
+        <div className='regresar'><Link to="/perfil" className="boton">Regresar</Link></div>
+        
             <div className="text-wrapper-14">Añadir Nuevo Libro</div>
-            <img className="line" src={imagenes.line4} />
-          </div>
           <form onSubmit={handleLibroSubmit} className="frame-6">
             <div className="frame-5">
               <div className="frame-6">
@@ -187,7 +183,8 @@ const InsertarLibro = () => {
                   required
                 />
               </div>
-              <button type="submit" className="save-card-details-2">Guardar Libro</button>
+              <div className='guardar'><button type="submit" className="boton">Guardar Libro</button></div>
+              
             </div>
           </form>
         </div>

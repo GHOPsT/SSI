@@ -2,19 +2,13 @@
 .pago-con-tarjeta {
   background-color: #ffffff;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
+  padding: 40px;
 }
 
-
-.pago-con-tarjeta .div {
-  background-color: #ffffff;
-  overflow: hidden;
-  width: 1400px;
-  height: 1024px;
-  position: absolute;
-}
 
 .pago-con-tarjeta .frame-5 {
   display: inline-flex;
@@ -164,17 +158,32 @@
 }
 
 .pago-con-tarjeta .frame-14 {
+  position: inherit;
   display: flex;
   flex-direction: column;
-  width: 590px;
-  height: 734px;
-  align-items: flex-start;
-  gap: 36px;
-  padding: 48px;
-  position: absolute;
-  top: 89px;
-  left: 88px;
-  border-radius: 8px;
+  align-items: center;
+  width: auto;
+  height: auto;
+
+}
+
+.regresar {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  width: 100%;
+}
+
+.guardar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.text-wrapper-14{
+  text-align: center;
 }
 
 .pago-con-tarjeta .text-wrapper-14 {

@@ -6,6 +6,7 @@ import Header from '../../common/header/header.js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import GuardarUsuario from '../IniciarSesion/UsuarioGuardado.js';
+import getFontSizes from 'antd/es/theme/themes/shared/genFontSizes.js';
 
 const SolicitudEstudiante = () => {
   const [justificacion, setJustificacion] = useState('');
@@ -39,7 +40,7 @@ const SolicitudEstudiante = () => {
       <Header />
       <div className='solicitud'>
         <div className='formulario'>
-          <h2>Solicitar Cambio de Rol</h2>
+          <p className='titulo'>Solicitar Cambio de Rol</p>
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="justificacion">Justificación:</label>
@@ -50,7 +51,7 @@ const SolicitudEstudiante = () => {
                 required
               />
             </div>
-            <button type="submit">Enviar Solicitud</button>
+            <button className='boton' type="submit">Enviar Solicitud</button>
           </form>
         </div>
       </div>

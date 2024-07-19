@@ -37,7 +37,7 @@ const GestorSolicitudes = () => {
     <div>
       <Header />
       <div className='gestor-solicitudes'>
-        <h2>Gestión de Solicitudes</h2>
+        <h2 className='titulo'>Gestión de Solicitudes</h2>
         <table>
           <thead>
             <tr>

@@ -11,7 +11,7 @@
   width: 100vw; /* Ancho al 100% del viewport */
   height: 100vh; /* Alto al 100% del viewport */
   opacity: 90%;
-  background-color: #d4c4c4;
+  background-image: url(https://static8.depositphotos.com/1007989/954/i/450/depositphotos_9548596-stock-illustration-books-background.jpg);
 }
 
 .registrarse .frame {
@@ -36,26 +36,11 @@
 }
 
 .registrarse .text-wrapper {
-  position: absolute;
-  width: 66px;
-  top: -1px;
-  left: 0;
-  font-family: "Roboto", Helvetica;
-  font-weight: 700;
-  color: #131314;
-  font-size: 17px;
-  letter-spacing: 0;
-  line-height: normal;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
 }
 
-.registrarse .line {
-  position: absolute;
-  width: 66px;
-  height: 1px;
-  top: 26px;
-  left: 0;
-  object-fit: cover;
-}
 
 .registrarse .div-wrapper {
   position: relative;
