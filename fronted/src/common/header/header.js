@@ -137,7 +137,7 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
               Biblioteca
             </Link>
             <Link
-              to="/venta-codigo"
+              to="/Foro"
               className={`text-wrapper-18 nav-link ${hoveredLink === 'vender' ? 'header-hover' : ''}`}
               onMouseEnter={() => handleMouseEnter('vender')}
               onMouseLeave={handleMouseLeave}

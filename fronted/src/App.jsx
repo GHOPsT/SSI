@@ -11,7 +11,7 @@ import VentaDatos from "./pages/VentaDatos/VentaDatos.js";
 import VentaFinal from "./pages/VentaFinal/VentaFinal.js";
 import VentaFuncionalidadDelCodigo from "./pages/VentaFuncionalidadDelCodigo/VentaFuncionalidadDelCodigo.js";
 import PantallaDesplegableVenta from "./pages/PantallaDespegableVenta/PantallaDesplegableVenta.js";
-import VentaCodigo from "./pages/VentaCodigo/VentaCodigo.js";
+import Foro from "./pages/ForoUser/ForoLogic.js";
 import PagoConTarjetas from "./pages/PagoConTarjetas/PagoConTarjetas.js";
 import CompraExitosa from "./pages/CompraExitosa/CompraExitosa.js";
 import DetalleProducto from "./pages/DetalleDelProducto/DetalleDelProducto.js";
@@ -39,7 +39,7 @@ function App() {
         <Route path="/detalle-producto" element={<ProtectedRoute><DetalleProducto /></ProtectedRoute>} />
         <Route path="/compra-exitosa" element={<ProtectedRoute><CompraExitosa /></ProtectedRoute>} />
         <Route path="/pago-tarjetas" element={<ProtectedRoute><PagoConTarjetas /></ProtectedRoute>} />
-        <Route path="/venta-codigo" element={<ProtectedRoute><VentaCodigo /></ProtectedRoute>} />
+        <Route path="/Foro" element={<ProtectedRoute><Foro /></ProtectedRoute>} />
         <Route path="/pantalla-venta" element={<ProtectedRoute><PantallaDesplegableVenta /></ProtectedRoute>} />
         <Route path="/venta-funcionalidad" element={<ProtectedRoute><VentaFuncionalidadDelCodigo /></ProtectedRoute>} />
         <Route path="/venta-final" element={<ProtectedRoute><VentaFinal /></ProtectedRoute>} />

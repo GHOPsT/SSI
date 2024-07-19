@@ -4,7 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Input, List } from 'antd';
 import Header from '../../common/header/header.js';
-import GuardarUsuario from '../IniciarSesion/UsuarioGuardado';
+import GuardarUsuario from '../IniciarSesion/UsuarioGuardado.js';
 
 const { TextArea } = Input;
 
