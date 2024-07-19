@@ -11,6 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -185,51 +186,67 @@ app.post('/api/respuestas', (req, res) => {
 
 // Configuración de Multer
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Directorio donde se guardarán las imágenes
+  destination: function (req, file, cb) {
+    if (file.fieldname === 'Imagen') {
+      cb(null, 'image_pdfs/');
+    } else if (file.fieldname === 'Pdf') {
+      cb(null, 'pdfs/');
+    }
   },
-  filename: (req, file, cb) => {
-    const filename = `${file.originalname}`;
-    cb(null, filename);
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`);
   }
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
 // Ruta para guardar los datos del formulario y la imagen
-app.post('/configuraciones', upload.single('image'), (req, res) => {
-  const { title, description, price, release_date, category_id, stock, estado_id } = req.body;
-  const image = req.file.filename;
-  const currentDate = new Date().toISOString().slice(0, 10);
-  const newTitle = `${title}`;
+app.post('/subir-libro', upload.fields([{ name: 'Imagen' }, { name: 'Pdf' }]), async (req, res) => {
+  console.log('Request received');
+  try {
+    const {
+      Nombre,
+      Autor,
+      ISBN,
+      Anio_publicacion,
+      Editorial,
+      Descripcion,
+      Genero,
+      Estado,
+      Cantidad
+    } = req.body;
+    
+    console.log('Request body:', req.body);
+    console.log('Uploaded files:', req.files);
 
-
-  const getStockQuery = 'SELECT stock FROM juegos WHERE titulo = ?';
-  DB.query(getStockQuery, [newTitle], (err, result) => {
-    if (err) {
-      console.error('Error fetching stock:', err);
-      res.status(500).json({ error: 'Error fetching stock' });
+    if (!req.files.Imagen || !req.files.Pdf) {
+      console.error('Missing files');
+      res.status(400).json({ message: 'Missing files' });
       return;
     }
 
-    let currentStock = 0;
-    if (result.length > 0) {
-      currentStock = result[0].stock;
-    }
-    const updatedStock = currentStock + 1;
+    // Construcción de rutas relativas para almacenar en la base de datos
+    const imagenFilename = req.files.Imagen[0].filename;
+    const pdfFilename = req.files.Pdf[0].filename;
 
-  const SQL = 'INSERT INTO juegos (titulo, descripcion, precio, fecha_lanzamiento, categoria_id, stock, fecha_creacion, estado_id) VALUES (?, ?, ?, ?, ?, ?, NOW(), ?)';
-  const values = [newTitle, description, price, release_date, category_id, stock, estado_id];
+    // Ajustar las rutas a tu formato deseado
+    const imagenPath = `backend/image_pdfs/${imagenFilename}`;
+    const pdfPath = `backend/pdfs/${pdfFilename}`;
 
-  DB.query(SQL, values, (err, result) => {
-    if (err) {
-      console.error('Error executing query:', err);
-      res.status(500).json({ error: 'Error executing query' });
-      return;
-    }
-    res.json({ message: 'Product successfully added', image });
-  });
-});
+    const query = 'INSERT INTO libros (Nombre, Autor, ISBN, Anio_publicacion, Editorial, Descripcion, Genero, Estado, Cantidad, Imagen, Ruta_pdf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+
+    DB.query(query, [Nombre, Autor, ISBN, Anio_publicacion, Editorial, Descripcion, Genero, Estado, Cantidad, imagenPath, pdfPath], (err, results) => {
+      if (err) {
+        console.error('Error inserting data into the database:', err.message);
+        res.status(500).json({ message: 'Error inserting data into the database', error: err.message });
+        return;
+      }
+      res.json({ message: 'Libro subido exitosamente' });
+    });
+  } catch (error) {
+    console.error('Error al subir el libro:', error.message);
+    res.status(500).json({ message: 'Error al subir el libro', error: error.message });
+  }
 });
 
 

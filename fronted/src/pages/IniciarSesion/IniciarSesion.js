@@ -5,6 +5,7 @@ import './style.css';
 import userpng from './img/usuario.png';
 import contraseniapng from './img/contrasenia.png';
 import GuardarUsuario from './UsuarioGuardado';
+import { GuardarRol } from './UsuarioRole';
 
 const IniciarSesion = () => {
   const [ID_Usuario, setNombre_usuario] = useState('');
@@ -22,6 +23,7 @@ const IniciarSesion = () => {
       const data = await response.json();
       if (data.ID_Usuario) {
         GuardarUsuario(data.ID_Usuario); 
+        GuardarRol(data.role)
         navigate('/inicio'); // Redirige a la página de inicio
       } else {
         alert('Nombre de usuario o contraseña incorrectos');

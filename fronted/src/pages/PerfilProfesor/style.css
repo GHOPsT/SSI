@@ -1,0 +1,108 @@
+.perfil-profesor {
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.perfil-profesor .div {
+  background-color: #f6f6f6;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+
+.perfil-profesor .frame {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.perfil-profesor .text-wrapper {
+  width: 137px;
+  height: 28px;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  text-align: center;
+}
+
+.perfil-profesor .rectangle {
+  position: relative;
+  flex: 1;
+  width: 167px;
+  flex-grow: 1;
+  object-fit: cover;
+}
+
+.perfil-profesor .div-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.perfil-profesor .frame-2 {
+  display: flex;
+  width: 158px;
+  height: 35px;
+  justify-content: center;
+  background-color: #14adb6;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.perfil-profesor .text-wrapper-3 {
+  position: relative;
+  width: fit-content;
+  font-family: "Actor", Helvetica;
+  font-weight: 400;
+  background-color: #15ADB7;
+  color: white;
+  border: none;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  width: 158px;
+  height: 35px
+}
+
+.perfil-icono img{
+  width: 150px;
+  height: 150px;
+  border: 10px, solid, #14adb6;
+  border-radius: 50%;
+  margin-top: 50px;
+}
+
+.perfil-detalles {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  padding: 20px;
+  gap: 12px;
+  text-align: left;
+  width: 325px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.perfil-detalles div {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.perfil-detalles input {
+  border-radius: 8px;
+}
+
+.etiqueta {
+  font-weight: 700;
+}
+

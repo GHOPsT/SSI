@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import PagoDesplegableCompras from '../../common/PantallaDespegableCompras/PagoDesplegableCompras.js';
 import axios from 'axios';
 import './globals.css';
 import './style.css';
-import imagenes from "./imagenes";
-import GuardarUsuario from '../../pages/IniciarSesion/UsuarioGuardado.js';
-
+import imagenes from './imagenes';
+import { ObtenerRol } from '../../pages/IniciarSesion/UsuarioRole.js'; // Corrección en el nombre del archivo
 
 const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdownVisible, setIsComprasDropdownVisible }) => {
   const [isVentasDropdownVisible, setIsVentasDropdownVisible] = useState(false);
@@ -15,14 +13,16 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
   const [selectedCategory, setSelectedCategory] = useState('');
   const navigate = useNavigate();
   const [juegosSeleccionados, setJuegosSeleccionados] = useState(juegosPreSeleccionados);
-
+  const [rol, setRol] = useState(null);
 
   useEffect(() => {
-    
+    const userRol = ObtenerRol();
+    setRol(userRol);
+
     axios.get('http://localhost:3001/juegos-seleccionados')
       .then(response => setJuegosSeleccionados(response.data))
       .catch(error => console.error('Error fetching selected games:', error));
-    
+
     axios.get('http://localhost:3001/categorias')
       .then(response => {
         setCategories(response.data);
@@ -65,6 +65,7 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
       .then(response => console.log(response.data))
       .catch(error => console.error('Error deleting selected games:', error));
   }
+
   const actualizarJuegosSeleccionados = (nuevosJuegos) => {
     axios.post('http://localhost:3001/juegos-seleccionados', nuevosJuegos)
       .then(response => {
@@ -87,7 +88,6 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
 
   const handleMouseLeave = () => {
     setHoveredLink(null);
-
   };
 
   return (
@@ -100,12 +100,12 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
           </div>
 
           <div className="frame-24">
-            <Link to="/perfil" >
-            <img className="user" src={imagenes.user} alt="User" />
+            <Link to="/perfil">
+              <img className="user" src={imagenes.user} alt="User" />
             </Link>
             <div className="frame-25">
-              <Link to ="/iniciar-sesion">
-                <img className="cerrar" src={imagenes.cerrar} alt="Cerrar sesion" /> 
+              <Link to="/iniciar-sesion">
+                <img className="cerrar" src={imagenes.cerrar} alt="Cerrar sesión" />
               </Link>
             </div>
           </div>
@@ -121,25 +121,25 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
               Inicio
             </Link>
             <Link
-              to="/perfil"
-              className={`text-wrapper-16 nav-link ${hoveredLink === 'nuevo' ? 'header-hover' : ''}`}
-              onMouseEnter={() => handleMouseEnter('nuevo')}
+              to={rol === 'Profesor' ? '/perfil-profesor' : '/perfil'}
+              className={`text-wrapper-16 nav-link ${hoveredLink === 'perfil' ? 'header-hover' : ''}`}
+              onMouseEnter={() => handleMouseEnter('perfil')}
               onMouseLeave={handleMouseLeave}
             >
               Perfil
             </Link>
             <Link
               to="/biblioteca"
-              className={`text-wrapper-17 nav-link ${hoveredLink === 'usado' ? 'header-hover' : ''}`}
-              onMouseEnter={() => handleMouseEnter('usado')}
+              className={`text-wrapper-17 nav-link ${hoveredLink === 'biblioteca' ? 'header-hover' : ''}`}
+              onMouseEnter={() => handleMouseEnter('biblioteca')}
               onMouseLeave={handleMouseLeave}
             >
               Biblioteca
             </Link>
             <Link
-              to="/Foro"
-              className={`text-wrapper-18 nav-link ${hoveredLink === 'vender' ? 'header-hover' : ''}`}
-              onMouseEnter={() => handleMouseEnter('vender')}
+              to="/foro"
+              className={`text-wrapper-18 nav-link ${hoveredLink === 'foro' ? 'header-hover' : ''}`}
+              onMouseEnter={() => handleMouseEnter('foro')}
               onMouseLeave={handleMouseLeave}
             >
               Foro
@@ -151,6 +151,5 @@ const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdown
     </div>
   );
 };
-
 
 export default Header;
