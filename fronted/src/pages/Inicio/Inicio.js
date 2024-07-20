@@ -1,44 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './globals.css';
 import './style.css';
 import imagenes from "./imagenes";
 import Header from '../../common/header/header.js';
-import CarritoCompras from '../CarritoCompras.js';
-import useCarrito from '../auxiliar.js';
 import GuardarUsuario from '../IniciarSesion/UsuarioGuardado.js';
 
 const Inicio = () => {
-  
-  const {
-    juegosSeleccionados,
-    isDropdownVisible,
-    setIsDropdownVisible,
-    mostrarCarrito,
-    carritoKey,
-    handleRemoverJuego
-  } = useCarrito();
-
 let usuario = GuardarUsuario();
 console.log(usuario);
-
-  console.log(carritoKey);
   return (
     <div>
-      <Header
-        juegosSeleccionados={juegosSeleccionados}
-        onRemoverJuego={handleRemoverJuego}
-        isComprasDropdownVisible={isDropdownVisible}
-        setIsComprasDropdownVisible={setIsDropdownVisible}
-      />
+      <Header/>
       <div className="inicio">
         <div className="div">
           <div className="mask-group">
             <Carousel showThumbs={false} showArrows={false} autoPlay infiniteLoop>
               <div>
-                <img className="frame" src={imagenes.frame303} alt="" />
+                <img className="frame" src={imagenes.bookdar} alt="" />
               </div>
               <div>
                 <img className="frame" src={imagenes.slide2} alt="" />
@@ -50,9 +30,6 @@ console.log(usuario);
           </div>
           <div className="overlap">
             <img className="group" src={imagenes.group72} alt="" />
-            <Link to={"/venta-nuevos"} >
-              <img className="img" src={imagenes.frame282} alt="" />
-            </Link>
             <img className="line" src={imagenes.line8} alt="" />
             <div className="frame-2">
               <div className="frame-3">
@@ -74,15 +51,6 @@ console.log(usuario);
             </div>
           </div>
         </div>
-        {mostrarCarrito && (
-          <CarritoCompras
-            key={carritoKey}
-            juegosSeleccionados={juegosSeleccionados}
-            handleRemoverJuego={handleRemoverJuego}
-            isDropdownVisible={isDropdownVisible}
-            setIsComprasDropdownVisible={setIsDropdownVisible}
-          />
-        )}
       </div>
     </div>
   );

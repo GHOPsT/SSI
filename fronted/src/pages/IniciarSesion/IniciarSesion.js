@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 import './globals.css';
 import './style.css';
-import mailSvg from './img/mail.svg';
-import lockSvg from './img/lock.svg';
-import frame444Svg from './img/frame-444.svg';
-import bienvenidoASvg from './img/bienvenido-a-gamecycle-com.png';
-import vectorSvg from './img/vector.svg';
+import userpng from './img/usuario.png';
+import contraseniapng from './img/contrasenia.png';
 import GuardarUsuario from './UsuarioGuardado';
+import { GuardarRol } from './UsuarioRole';
 
 const IniciarSesion = () => {
-  const [nombre_usuario, setNombre_usuario] = useState('');
-  const [contrasena, setContrasena] = useState('');
+  const [ID_Usuario, setNombre_usuario] = useState('');
+  const [Contrasenia, setContrasena] = useState('');
   const navigate = useNavigate(); // Inicializa useNavigate
 
   const iniciarSesion = async (event) => {
@@ -20,11 +18,12 @@ const IniciarSesion = () => {
       const response = await fetch('http://localhost:3001/iniciar-sesion', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre_usuario, contrasena }),
+        body: JSON.stringify({ID_Usuario, Contrasenia }),
       });
       const data = await response.json();
-      if (data.usuario_id) {
-        GuardarUsuario(data.usuario_id); 
+      if (data.ID_Usuario) {
+        GuardarUsuario(data.ID_Usuario); 
+        GuardarRol(data.role)
         navigate('/inicio'); // Redirige a la página de inicio
       } else {
         alert('Nombre de usuario o contraseña incorrectos');
@@ -35,64 +34,48 @@ const IniciarSesion = () => {
     }
   };
 
+  const irARegistrarse = () => {
+    navigate('/registrarse'); // Navega a la página de registro
+  };
+
   return (
     <div className="iniciar-sesin">
       <div className="group-wrapper">
-        <div className="group">
-          <div className="frame">
-            <div className="overlap">
+       <div className="group-2">
+          <div className="text-wrapper-7">Sistema Integral de Información y Recursos Educativos </div>
+        </div>
               <div className="rectangle"></div>
               <div className="div">
                 <div className="text-wrapper">Iniciar sesión</div>
-                <Link to="/registrarse" className="text-wrapper-2">Registrarse</Link>
-                <form onSubmit={iniciarSesion}>
+                <button onClick={irARegistrarse} className="text-wrapper-2">Registrarse</button>
+                <form className="frame" onSubmit={iniciarSesion}>
                   <div className="frame-2">
                     <input
-                      className="correo-electrnico"
-                      placeholder="ejemplo@gmail.com"
-                      value={nombre_usuario}
+                      className="box-txt"
+                      placeholder="Usuario"
+                      value={ID_Usuario}
                       onChange={(e) => setNombre_usuario(e.target.value)}
                     />
-                    <img className="mail" src={mailSvg} alt="mail" />
+                    <img className="img" src={userpng} alt="img" />
                   </div>
-                  <div className="frame-3">
-                    <div className="frame-4">
-                      <input type="checkbox" id="rememberPassword" name="rememberPassword" />
-                      <label className="text-wrapper-3" htmlFor="rememberPassword">Recordar contraseña</label>
-                    </div>
-                    <div className="text-wrapper-4">Olvidé mi contraseña</div>
-                  </div>
-                  <div className="text-wrapper-5">o conéctate con</div>
-                  <img className="frame-5" src={frame444Svg} alt="frame" />
-                  <div className="frame-6">
+                  <div className="frame-4">
                     <input
                       type="password"
-                      className="contrasea"
+                      className="box-txt"
                       placeholder="*********"
-                      value={contrasena}
+                      value={Contrasenia}
                       onChange={(e) => setContrasena(e.target.value)}
                     />
-                    <img className="lock" src={lockSvg} alt="lock" />
+                    <img className="img" src={contraseniapng} alt="img" />
                   </div>
-                  <div className="frame-7">
-                    <div className="overlap-2">
-                      <input type="submit" className="rectangle-2" value="Ingresar" />
-                    </div>
+                  <div className="frame-3">
+                    <button type="submit" className="rectangle-2">Ingresar</button>
                   </div>
                 </form>
               </div>
-            </div>
           </div>
-          <img className="bienvenido-a" src={bienvenidoASvg} alt="bienvenido" />
-          <div className="group-2">
-            <div className="text-wrapper-7">GAME CYCLE</div>
-            <img className="vector" src={vectorSvg} alt="vector" />
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
 
 export default IniciarSesion;
-

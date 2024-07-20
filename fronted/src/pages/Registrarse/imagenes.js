@@ -1,13 +1,13 @@
-import user from "./img/user.png";
-import mail from "./img/mail.png";
-import lock from "./img/lock.png";
+import user from "./img/usuario.png";
+import mail from "./img/correo.png";
+import lock from "./img/contrasenia.png";
 import line from "./img/Line.png";
-import gmaecycle2 from "./img/gmaecycle-2.png";
+import back from "./img/regresar.png";
 
 export default {
     "user": user,
     "mail": mail,
     "lock": lock,
     "line": line,
-    "gmaecycle2": gmaecycle2
+    "back": back
 };
