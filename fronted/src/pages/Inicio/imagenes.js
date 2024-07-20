@@ -27,6 +27,7 @@ import slide3 from "./img/slide3.png";
 import slide4 from "./img/slide4.png";
 import slide5 from "./img/slide5.png";
 import slide6 from "./img/slide6.png";
+import bookday from "./img/dia-del-libro.avif"
 
 
 export default {
@@ -58,5 +59,6 @@ export default {
     "slide3":slide3,
     "slide4":slide4,
     "slide5":slide5,
-    "slide6":slide6    
+    "slide6":slide6,
+    "bookdar": bookday    
 };

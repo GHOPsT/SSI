@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import imagenes from './imagenes.js';
 import './globals.css';
 import './style.css';
 import Header from '../../common/header/header.js';
-import GuardarUsuario from '../IniciarSesion/UsuarioGuardado.js';
-import useCarrito from '../auxiliar.js';
 import axios from 'axios';
 
 const InsertarLibro = () => {
-  const { juegosSeleccionados, isDropdownVisible, setIsDropdownVisible, handleRemoverJuego } = useCarrito();
 
   const [nombre, setNombre] = useState('');
   const [autor, setAutor] = useState('');
@@ -23,7 +19,6 @@ const InsertarLibro = () => {
   const [imagen, setImagen] = useState(null);
   const [pdf, setPdf] = useState(null);
 
-  const precioTotal = juegosSeleccionados.reduce((total, juego) => total + juego.precio * juego.cantidad, 0);
 
 
 

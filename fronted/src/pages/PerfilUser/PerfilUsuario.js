@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './globals.css';
 import './style.css';
 import Header from '../../common/header/header.js';
-import axios from 'axios';
 import imagenes from './imagenes.js';
 import { Link } from 'react-router-dom';
 import GuardarUsuario from '../IniciarSesion/UsuarioGuardado.js';

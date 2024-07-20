@@ -1,86 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './globals.css';
 import './style.css';
 import imagenes from './imagenes';
 import { ObtenerRol } from '../../pages/IniciarSesion/UsuarioRole.js'; // Corrección en el nombre del archivo
 
-const Header = ({ juegosPreSeleccionados = [], onRemoverJuego, isComprasDropdownVisible, setIsComprasDropdownVisible }) => {
-  const [isVentasDropdownVisible, setIsVentasDropdownVisible] = useState(false);
+const Header = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const navigate = useNavigate();
-  const [juegosSeleccionados, setJuegosSeleccionados] = useState(juegosPreSeleccionados);
   const [rol, setRol] = useState(null);
 
   useEffect(() => {
     const userRol = ObtenerRol();
     setRol(userRol);
-
-    axios.get('http://localhost:3001/juegos-seleccionados')
-      .then(response => setJuegosSeleccionados(response.data))
-      .catch(error => console.error('Error fetching selected games:', error));
-
-    axios.get('http://localhost:3001/categorias')
-      .then(response => {
-        setCategories(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching categories:', error);
-      });
-  }, []);
-
-  const handleCategoryChange = (e) => {
-    const categoryId = e.target.value;
-    setSelectedCategory(categoryId);
-  };
-
-  const handleImageClick = () => {
-    if (selectedCategory) {
-      navigate(`/juegos-por-categoria/${selectedCategory}`);
-    } else {
-      alert('Por favor, selecciona una categoría primero');
-    }
-  };
-
-  const handleNuevoClick = () => {
-    navigate("/venta-nuevos", { state: { juegosSeleccionados } });
-  };
-
-  const handleUsadoClick = () => {
-    navigate("/venta-usados", { state: { juegosSeleccionados } });
-  };
-
-  const toggleComprasDropdown = () => {
-    setIsComprasDropdownVisible(!isComprasDropdownVisible);
-    if (isVentasDropdownVisible) {
-      setIsVentasDropdownVisible(false);
-    }
-  };
-
-  const handleCerrarSesion = () => {
-    axios.delete('http://localhost:3001/juegos-seleccionados')
-      .then(response => console.log(response.data))
-      .catch(error => console.error('Error deleting selected games:', error));
-  }
-
-  const actualizarJuegosSeleccionados = (nuevosJuegos) => {
-    axios.post('http://localhost:3001/juegos-seleccionados', nuevosJuegos)
-      .then(response => {
-        console.log('Juegos seleccionados actualizados');
-      })
-      .catch(error => {
-        console.error('Error actualizando juegos seleccionados:', error);
-      });
-  };
-
-  const handleRemoverJuego = (juegoId) => {
-    const juegosActualizados = juegosSeleccionados.filter(juego => juego.juego_id !== juegoId);
-    actualizarJuegosSeleccionados(juegosActualizados);
-    onRemoverJuego(juegosActualizados);
-  }
+  }, []); // Agrega un array vacío para ejecutar solo una vez al montar el componente
 
   const handleMouseEnter = (link) => {
     setHoveredLink(link);

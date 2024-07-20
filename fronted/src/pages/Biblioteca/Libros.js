@@ -4,8 +4,8 @@ import './style.css';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../common/header/header.js';
 import axios from 'axios';
-import imagenes from './imagenes.js';
 import { Card } from 'antd';
+import imagenes from './imagenes.js';
 
 const Biblioteca = () => {
     const [libros, setLibros] = useState([]);
@@ -46,10 +46,10 @@ const Biblioteca = () => {
         try {
             const response = await axios.get(url);
             const filteredBooks = response.data.filter(libro => 
-              (!genero || libro.genero === genero) && 
-              (!busqueda || libro.Nombre.toLowerCase() === busqueda.toLowerCase())
-          );
-            setLibros(response.data.sort((a, b) => a.Id_Libro - b.Id_Libro));
+                (!genero || libro.genero === genero) && 
+                (!busqueda || libro.Nombre.toLowerCase() === busqueda.toLowerCase())
+            );
+            setLibros(filteredBooks.sort((a, b) => a.Id_Libro - b.Id_Libro));
         } catch (error) {
             setError('Error searching books:', error);
         }
@@ -57,22 +57,28 @@ const Biblioteca = () => {
 
     const handleDownload = async (rutaPdf) => {
         try {
+            const filename = rutaPdf.split('/').pop();
             const response = await axios({
-                url: `http://localhost:3001/descargar-pdf/${rutaPdf}`,
+                url: `http://localhost:3001/descargar-pdf/${filename}`,
                 method: 'GET',
-                responseType: 'blob', // Indica que la respuesta es un archivo
+                responseType: 'blob',
             });
-
-            // Crear una URL para el archivo descargado
+    
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', rutaPdf.split('/').pop()); // Usar el nombre del archivo
+            link.setAttribute('download', filename);
             document.body.appendChild(link);
             link.click();
         } catch (error) {
             console.error('Error downloading PDF:', error);
         }
+    };
+    
+
+    const handleView = (rutaPdf) => {
+        const pdfUrl = `http://localhost:3001/descargar-pdf/${rutaPdf.split('/').pop()}`;
+        window.open(pdfUrl, '_blank');
     };
 
     return (
@@ -81,12 +87,6 @@ const Biblioteca = () => {
             <div className='venta-usados'>
                 <div className='div'>
                     <div className="frame-14">
-                        <input 
-                            className="buscar-libro" 
-                            placeholder="Buscar libro" 
-                            value={busqueda} 
-                            onChange={handleSearchChange} 
-                        />
                         <div className="overlap-group-2">
                             <select
                                 id="genero"
@@ -100,8 +100,7 @@ const Biblioteca = () => {
                                 <option value="No ficcion">No ficción</option>
                             </select>
                         </div>
-                        <img className="line-5" src={imagenes.line7} alt="Line" />
-                        <img className="frame-15" src={imagenes.frame198} alt="Buscar" onClick={handleImageClick} />
+                        <img className="frame-15" src={imagenes.buscar} alt="Buscar" onClick={handleImageClick} />
                     </div>
                     <div className="libros-grid">
                         {error && <p>{error}</p>}
@@ -111,9 +110,10 @@ const Biblioteca = () => {
                                     <div style={{ background: '#ECECEC', padding: '30px' }}>
                                         <Card title={libro.Nombre} bordered={false}>
                                             {libro.Descripcion}
-                                            <button onClick={() => handleDownload(libro.Ruta_pdf)}>
-                                                Descargar PDF
-                                            </button>
+                                            <div>
+                                                <button onClick={() => handleDownload(libro.Ruta_pdf)}>Descargar PDF</button>
+                                                <button onClick={() => handleView(libro.Ruta_pdf)}>Ver PDF</button>
+                                            </div>
                                         </Card>
                                     </div>
                                     <img src={libro.Imagen} alt={libro.Nombre} />

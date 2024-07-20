@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 import './globals.css';
 import './style.css';
 import userpng from './img/usuario.png';

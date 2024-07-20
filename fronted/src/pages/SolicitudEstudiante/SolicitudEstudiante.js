@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import imagenes from './imagenes'; // Importar el archivo imagenes.js
 import './globals.css';
 import './style.css';
 import Header from '../../common/header/header.js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import GuardarUsuario from '../IniciarSesion/UsuarioGuardado.js';
-import getFontSizes from 'antd/es/theme/themes/shared/genFontSizes.js';
 
 const SolicitudEstudiante = () => {
   const [justificacion, setJustificacion] = useState('');

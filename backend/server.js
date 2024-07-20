@@ -5,6 +5,8 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const ImageKit = require('imagekit');
+const serveIndex = require('serve-index');
 
 
 const app = express();
@@ -15,6 +17,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+
+const imagekit = new ImageKit({
+  publicKey: 'public_a+N/BSQezZfBzMTChmUn2lWjduU=',
+  privateKey: 'private_G0vqNkU6Is/5L33nU4ZICfsLe+4=',
+  urlEndpoint: 'https://ik.imagekit.io/lvnjganbk'
+});
 
 const port = 3001;
 
@@ -200,54 +208,56 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Ruta para guardar los datos del formulario y la imagen
 app.post('/subir-libro', upload.fields([{ name: 'Imagen' }, { name: 'Pdf' }]), async (req, res) => {
-  console.log('Request received');
   try {
-    const {
-      Nombre,
-      Autor,
-      ISBN,
-      Anio_publicacion,
-      Editorial,
-      Descripcion,
-      Genero,
-      Estado,
-      Cantidad
-    } = req.body;
-    
-    console.log('Request body:', req.body);
-    console.log('Uploaded files:', req.files);
+      const {
+          Nombre,
+          Autor,
+          ISBN,
+          Anio_publicacion,
+          Editorial,
+          Descripcion,
+          Genero,
+          Estado,
+          Cantidad
+      } = req.body;
 
-    if (!req.files.Imagen || !req.files.Pdf) {
-      console.error('Missing files');
-      res.status(400).json({ message: 'Missing files' });
-      return;
-    }
-
-    // Construcción de rutas relativas para almacenar en la base de datos
-    const imagenFilename = req.files.Imagen[0].filename;
-    const pdfFilename = req.files.Pdf[0].filename;
-
-    // Ajustar las rutas a tu formato deseado
-    const imagenPath = `backend/image_pdfs/${imagenFilename}`;
-    const pdfPath = `backend/pdfs/${pdfFilename}`;
-
-    const query = 'INSERT INTO libros (Nombre, Autor, ISBN, Anio_publicacion, Editorial, Descripcion, Genero, Estado, Cantidad, Imagen, Ruta_pdf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-
-    DB.query(query, [Nombre, Autor, ISBN, Anio_publicacion, Editorial, Descripcion, Genero, Estado, Cantidad, imagenPath, pdfPath], (err, results) => {
-      if (err) {
-        console.error('Error inserting data into the database:', err.message);
-        res.status(500).json({ message: 'Error inserting data into the database', error: err.message });
-        return;
+      if (!req.files.Imagen || !req.files.Pdf) {
+          res.status(400).json({ message: 'Missing files' });
+          return;
       }
-      res.json({ message: 'Libro subido exitosamente' });
-    });
+
+      const imagenPath = req.files.Imagen[0].path;
+      const pdfPath = req.files.Pdf[0].path;
+
+      // Subir imagen a ImageKit.io
+      const uploadImageResponse = await imagekit.upload({
+          file: fs.readFileSync(imagenPath),
+          fileName: req.files.Imagen[0].originalname
+      });
+
+      const imagenUrl = uploadImageResponse.url;
+
+      // Puedes eliminar el archivo local después de subirlo
+      fs.unlinkSync(imagenPath);
+
+      const pdfFilename = req.files.Pdf[0].filename;
+      const pdfPathInDb = `backend/pdfs/${pdfFilename}`;
+
+      const query = 'INSERT INTO libros (Nombre, Autor, ISBN, Anio_publicacion, Editorial, Descripcion, Genero, Estado, Cantidad, Imagen, Ruta_pdf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+
+      DB.query(query, [Nombre, Autor, ISBN, Anio_publicacion, Editorial, Descripcion, Genero, Estado, Cantidad, imagenUrl, pdfPathInDb], (err, results) => {
+          if (err) {
+              res.status(500).json({ message: 'Error inserting data into the database', error: err.message });
+              return;
+          }
+          res.json({ message: 'Libro subido exitosamente' });
+      });
   } catch (error) {
-    console.error('Error al subir el libro:', error.message);
-    res.status(500).json({ message: 'Error al subir el libro', error: error.message });
+      res.status(500).json({ message: 'Error al subir el libro', error: error.message });
   }
 });
+
 
 // Ruta para guardar solicitudes
 app.post('/solicitud', (req, res) => {
@@ -348,58 +358,33 @@ app.post('/responder-solicitud/:id', async (req, res) => {
   }
 });
 
-// Ruta para descargar el PDF
-app.get('/descargar-pdf/:id', (req, res) => {
-  const { id } = req.params;
-  
-  // Obtener la ruta del archivo PDF desde la base de datos
-  const query = 'SELECT Ruta_pdf FROM libros WHERE ID_Libro = ?';
-  DB.query(query, [id], (err, results) => {
-    if (err) {
-      console.error('Error fetching PDF path:', err);
-      res.status(500).json({ message: 'Error fetching PDF path' });
-      return;
-    }
-    
-    if (results.length === 0) {
-      res.status(404).json({ message: 'Libro no encontrado' });
-      return;
-    }
+// Servir archivos estáticos
+app.use('/pdfs', express.static(path.join(__dirname, 'pdfs')));
 
-    const rutaPdf = results[0].Ruta_pdf;
-    
-    // Enviar el archivo PDF
-    res.download(rutaPdf, (err) => {
+// Servir índice de archivos
+app.use('/pdfs', serveIndex(path.join(__dirname, 'pdfs'), { icons: true }));
+
+// Endpoint para obtener la lista de PDFs
+app.get('/pdfs', (req, res) => {
+  const pdfsDir = path.join(__dirname, 'pdfs');
+  fs.readdir(pdfsDir, (err, files) => {
       if (err) {
-        console.error('Error downloading PDF:', err);
-        res.status(500).json({ message: 'Error downloading PDF' });
+          res.status(500).json({ message: 'Error reading directory', error: err.message });
+      } else {
+          res.json(files);
       }
-    });
   });
 });
 
-// Ruta para obtener las categorías
-app.get('/categorias', (req, res) => {
-  const SQL = 'SELECT categoria_id, nombre FROM categorias';
-  DB.query(SQL, (err, results) => {
-    if (err) {
-      console.error('Error executing query:', err);
-      res.status(500).json({ error: 'Error executing query' });
-      return;
-    }
-    res.json(results);
-  });
-});
-
-app.get('/estados', (req, res) => {
-  const SQL = 'SELECT estado_id, nombre FROM estado';
-  DB.query(SQL, (err, results) => {
-    if (err) {
-      console.error('Error executing query:', err);
-      res.status(500).json({ error: 'Error executing query' });
-      return;
-    }
-    res.json(results);
+// Endpoint para servir un archivo específico
+app.get('/descargar-pdf/:filename', (req, res) => {
+  const { filename } = req.params;
+  const filePath = path.join(__dirname, 'pdfs', filename);
+  res.sendFile(filePath, (err) => {
+      if (err) {
+          console.error('Error sending file:', err);
+          res.status(500).json({ message: 'Error sending file', error: err.message });
+      }
   });
 });
 
@@ -421,209 +406,6 @@ app.get('/perfil/:id', (req, res) => {
       res.status(404).json({ error: 'Usuario no encontrado' });
     }
   });
-});
-
-
-app.get('/venta-usados', (req, res) => {
-  const SQL = 'SELECT * FROM juegos WHERE estado_id = 2';
-  DB.query(SQL, (err, rows) => {
-    if (err) {
-      console.error('Error executing query:', err);
-      res.status(500).json({ error: 'Error executing query' });
-      return;
-    }
-    console.log("Hola")
-    res.json(rows);
-  });
-});
- 
-app.get('/juegos-por-categoria', (req, res) => {
-  const categoriaId = req.query.categoria_id;
-
-  if (!categoriaId) {
-    res.status(400).json({ error: 'Falta categoria_id en la consulta' });
-    return;
-  }
-
-  const SQL = 'SELECT * FROM juegos WHERE categoria_id = ?';
-  DB.query(SQL, [categoriaId], (err, rows) => {
-    if (err) {
-      console.error('Error ejecutando la consulta:', err);
-      res.status(500).json({ error: 'Error ejecutando la consulta' });
-      return;
-    }
-    res.json(rows);
-  });
-});
-
-app.get('/detalle-producto/:juego_id', (req, res) => {
-  const { juego_id } = req.params;
-
-  const SQL = 'SELECT * FROM juegos WHERE juego_id = ?';
-  DB.query(SQL, [juego_id], (err, result) => {
-    if (err) {
-      console.error('Error executing query:', err);
-      res.status(500).json({ error: 'Error executing query' });
-      return;
-    }
-    if (result.length === 0) {
-      res.status(404).json({ error: 'Juego no encontrado' });
-      return;
-    }
-    res.json(result[0]);
-  });
-});
-
-// Ruta para obtener el título y el precio de un juego específico por su ID
-app.get('/juego-detalle/:juego_id', (req, res) => {
-  const { juego_id } = req.params;
-
-  const SQL = 'SELECT titulo, precio FROM juegos WHERE juego_id = ?';
-  DB.query(SQL, [juego_id], (err, result) => {
-    if (err) {
-      console.error('Error executing query:', err);
-      res.status(500).json({ error: 'Error executing query' });
-      return;
-    }
-    if (result.length === 0) {
-      res.status(404).json({ error: 'Juego no encontrado' });
-      return;
-    }
-    const juegoDetalle = result[0];
-    res.json(juegoDetalle);
-  });
-});
-
-const filePath = path.join(__dirname, 'juegos-seleccionados.json');
-
-app.get('/juegos-seleccionados', (req, res) => {
-  fs.readFile(filePath, 'utf8', (err, data) => {
-      if (err) {
-          return res.status(500).send('Error reading file');
-      }
-      try {
-          const juegosExistentes = data ? JSON.parse(data) : [];
-          res.json(juegosExistentes);
-      } catch (err) {
-          res.status(500).send('Error parsing JSON data');
-      }
-  });
-});
-
-// Endpoint para actualizar los juegos seleccionados
-app.post('/juegos-seleccionados', (req, res) => {
-
-  const nuevosJuegosSeleccionados = req.body;
-
-  fs.readFile(filePath, 'utf8', (err, data) => {
-      if (err) {
-          return res.status(500).send('Error reading file');
-      }
-      try {
-          const juegosExistentes = data ? JSON.parse(data) : [];
-          const juegosActualizados = [...juegosExistentes, ...nuevosJuegosSeleccionados];
-
-          fs.writeFile(filePath, JSON.stringify(juegosActualizados, null, 2), (err) => {
-              if (err) {
-                  return res.status(500).send('Error writing file');
-              }
-              res.send('Juegos seleccionados actualizados');
-          });
-      } catch (err) {
-          res.status(500).send('Error parsing JSON data');
-      }
-  });
-});
-
-// Endpoint para eliminar todos los datos del archivo JSON
-app.delete('/juegos-seleccionados', (req, res) => {
-  fs.writeFile(filePath, '', (err) => {
-      if (err) {
-          return res.status(500).send('Error writing file');
-      }
-      res.send('Juegos seleccionados eliminados');
-  });
-});
-
-
-// Endpoint para guardar la compra
-app.post('/guardar-compra', (req, res) => {
-  const { usuario_id, juegosSeleccionados, precioTotal } = req.body;
-
-  const SQLPedido = 'INSERT INTO Pedido (usuario_id) VALUES (?)';
-  DB.query(SQLPedido, [usuario_id], (err, resultPedido) => {
-    if (err) {
-      console.error('Error al insertar pedido:', err);
-      res.status(500).json({ error: 'Error al guardar la compra' });
-      return;
-    }
-
-    const pedido_id = resultPedido.insertId;
-
-    const detalles = juegosSeleccionados.map(juego => [pedido_id, juego.juego_id, juego.cantidad]);
-
-    const SQLDetalle = 'INSERT INTO Detalle (pedido_id, juego_id, cantidad) VALUES ?';
-    DB.query(SQLDetalle, [detalles], (err, resultDetalle) => {
-      if (err) {
-        console.error('Error al insertar detalle:', err);
-        res.status(500).json({ error: 'Error al guardar la compra' });
-        return;
-      }
-
-      res.json({ message: 'Compra guardada correctamente' });
-    });
-  });
-});
-
-app.get('/historial/:usuario_id', (req, res) => {
-  const { usuario_id } = req.params;
-
-  const SQL = `
-    SELECT 
-      p.pedido_id,
-      p.fecha,
-      j.titulo,
-      d.cantidad,
-      j.precio,
-      c.nombre AS categoria,
-      e.nombre AS estado
-    FROM pedido p
-    JOIN detalle d ON p.pedido_id = d.pedido_id
-    JOIN juegos j ON d.juego_id = j.juego_id
-    JOIN categorias c ON j.categoria_id = c.categoria_id
-    JOIN estado e ON j.estado_id = e.estado_id
-    WHERE p.usuario_id = ?
-  `;
-
-  DB.query(SQL, [usuario_id], (err, results) => {
-    if (err) {
-      console.error('Error executing query:', err);
-      res.status(500).json({ error: 'Error executing query' });
-      return;
-    }
-    res.json(results);
-  });
-});
-
-app.get('/buscar', async (req, res) => {
-  const { titulo } = req.query;
-  if (!titulo) {
-    return res.status(400).json({ error: 'Se requiere un título para la búsqueda' });
-  }
-
-  try {
-    const query = `
-      SELECT * FROM juegos
-      WHERE LOWER(titulo) LIKE LOWER($1)
-    `;
-    const values = [`%${titulo}%`];
-    const result = await pool.query(query, values);
-
-    res.json(result.rows);
-  } catch (error) {
-    console.error('Error al buscar juegos:', error);
-    res.status(500).json({ error: 'Error al buscar juegos' });
-  }
 });
 
 
