@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import GuardarUsuario from '../pages/IniciarSesion/UsuarioGuardado.js';
+import GuardarUsuario from '../Logica/Registro/UsuarioGuardado';
 
 const ProtectedRoute = ({ children }) => {
   const usuario = GuardarUsuario();

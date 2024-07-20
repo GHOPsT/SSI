@@ -5,7 +5,7 @@ import './globals.css';
 import './style.css';
 import imagenes from "./imagenes";
 import Header from '../../common/header/header.js';
-import GuardarUsuario from '../IniciarSesion/UsuarioGuardado.js';
+import GuardarUsuario from '../../Logica/Registro/UsuarioGuardado.js';
 
 const Inicio = () => {
 let usuario = GuardarUsuario();

@@ -1,10 +1,11 @@
+// src/pages/Foro.js
 import './globals.css';
 import './style.css';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Input, List } from 'antd';
 import Header from '../../common/header/header.js';
-import GuardarUsuario from '../IniciarSesion/UsuarioGuardado.js';
+import GuardarUsuario from '../../Logica/Registro/UsuarioGuardado.js';
+import { obtenerPreguntas, registrarPregunta, responderPregunta } from '../../Logica/Foro/foroService.js';
 
 const { TextArea } = Input;
 
@@ -19,10 +20,10 @@ const Foro = () => {
 
   const fetchPreguntas = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/preguntas');
-      setPreguntas(response.data);
+      const data = await obtenerPreguntas();
+      setPreguntas(data);
     } catch (error) {
-      setError('Error fetching questions:', error);
+      setError('Error fetching questions');
     }
   };
 
@@ -40,14 +41,11 @@ const Foro = () => {
         console.error('Usuario no encontrado');
         return;
       }
-      await axios.post('http://localhost:3001/api/preguntas', {
-        ID_Usuario: usuarioId,
-        Pregunta: nuevaPregunta
-      });
+      await registrarPregunta(usuarioId, nuevaPregunta);
       setNuevaPregunta('');
       fetchPreguntas();
     } catch (error) {
-      setError('Error al registrar la pregunta:', error);
+      setError('Error al registrar la pregunta');
     }
   };
 
@@ -58,14 +56,10 @@ const Foro = () => {
         console.error('Usuario no encontrado');
         return;
       }
-      await axios.post('http://localhost:3001/api/respuestas', {
-        ID_Pregunta: idPregunta,
-        ID_Usuario: usuarioId,
-        Respuesta: respuesta
-      });
+      await responderPregunta(idPregunta, usuarioId, respuesta);
       fetchPreguntas();
     } catch (error) {
-      setError('Error al responder la pregunta:', error);
+      setError('Error al responder la pregunta');
     }
   };
 

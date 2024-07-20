@@ -11,13 +11,13 @@ const Footer = () => {
             <div className="frame-5">
               <div className="frame-6">
                 <p className="RESEARCH">
-                  <span className="text-wrapper-2">¿Alguna pregunta? Llámenos 24/7!</span>
+                  <span className="text-wrapper-2">¿Alguna pregunta? Llámenos 24/7</span>
                   <span className="text-wrapper-3">&nbsp;</span>
                 </p>
-                <p className="stratus-RESEARCH">967 673 169<br />963 542 293</p>
+                <p className="stratus-RESEARCH">999 888 777<br />999 666 555</p>
                 <p className="cont-ctenos">
                   <span className="text-wrapper-2">Contáctenos<br /></span>
-                  <span className="text-wrapper-4">gamecycle@gmail.com</span>
+                  <span className="text-wrapper-4">siire@gmail.com</span>
                 </p>
               </div>
               <div className="frame-10">

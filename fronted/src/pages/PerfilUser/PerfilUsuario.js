@@ -1,10 +1,12 @@
+// src/pages/PerfilUsuario.js
 import React, { useEffect, useState } from 'react';
 import './globals.css';
 import './style.css';
 import Header from '../../common/header/header.js';
 import imagenes from './imagenes.js';
 import { Link } from 'react-router-dom';
-import GuardarUsuario from '../IniciarSesion/UsuarioGuardado.js';
+import GuardarUsuario from '../../Logica/Registro/UsuarioGuardado.js';
+import { obtenerPerfil } from '../../Logica/Perfil/perfilService';
 
 const PerfilUsuario = () => {
   const [perfil, setPerfil] = useState(null);
@@ -17,8 +19,7 @@ const PerfilUsuario = () => {
         return;
       }
       try {
-        const response = await fetch(`http://localhost:3001/perfil/${usuarioId}`);
-        const data = await response.json();
+        const data = await obtenerPerfil(usuarioId);
         setPerfil(data);
       } catch (error) {
         console.error('Error fetching perfil:', error);

@@ -1,12 +1,12 @@
+// InsertarLibro.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './globals.css';
 import './style.css';
 import Header from '../../common/header/header.js';
-import axios from 'axios';
+import { subirLibro } from '../../Logica/Libros/bookService.js'; // Importa la función desde bookService
 
 const InsertarLibro = () => {
-
   const [nombre, setNombre] = useState('');
   const [autor, setAutor] = useState('');
   const [isbn, setIsbn] = useState('');
@@ -18,9 +18,6 @@ const InsertarLibro = () => {
   const [cantidad, setCantidad] = useState(1);
   const [imagen, setImagen] = useState(null);
   const [pdf, setPdf] = useState(null);
-
-
-
 
   const handleLibroSubmit = async (e) => {
     e.preventDefault();
@@ -39,12 +36,9 @@ const InsertarLibro = () => {
     formData.append('Pdf', pdf);
 
     try {
-      const response = await axios.post('http://localhost:3001/subir-libro', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-      console.log(response.data); // Mensaje de éxito desde el backend
+      const data = await subirLibro(formData);
+      console.log('Libro subido con éxito:', data);
+      // Puedes mostrar un mensaje de éxito o redirigir al usuario aquí
     } catch (error) {
       console.error('Error al subir el libro:', error);
       // Manejar el error, mostrar mensaje al usuario, etc.
@@ -53,14 +47,15 @@ const InsertarLibro = () => {
 
   return (
     <div>
-      <Header/>
+      <Header />
 
       <div className="pago-con-tarjeta">
-
         <div className="frame-14">
-        <div className='regresar'><Link to="/perfil" className="boton">Regresar</Link></div>
-        
-            <div className="text-wrapper-14">Añadir Nuevo Libro</div>
+          <div className='regresar'>
+            <Link to="/perfil" className="boton">Regresar</Link>
+          </div>
+
+          <div className="text-wrapper-14">Añadir Nuevo Libro</div>
           <form onSubmit={handleLibroSubmit} className="frame-6">
             <div className="frame-5">
               <div className="frame-6">
@@ -178,13 +173,13 @@ const InsertarLibro = () => {
                   required
                 />
               </div>
-              <div className='guardar'><button type="submit" className="boton">Guardar Libro</button></div>
-              
+              <div className='guardar'>
+                <button type="submit" className="boton">Guardar Libro</button>
+              </div>
             </div>
           </form>
         </div>
       </div>
-
     </div>
   );
 };

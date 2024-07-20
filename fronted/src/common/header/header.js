@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './globals.css';
 import './style.css';
 import imagenes from './imagenes';
-import { ObtenerRol } from '../../pages/IniciarSesion/UsuarioRole.js'; // Corrección en el nombre del archivo
+import { ObtenerRol } from '../../Logica/Registro/UsuarioRole.js'; // Corrección en el nombre del archivo
 
 const Header = () => {
   const [hoveredLink, setHoveredLink] = useState(null);

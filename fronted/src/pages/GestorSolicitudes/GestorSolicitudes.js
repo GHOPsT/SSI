@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './globals.css';
 import './style.css';
 import Header from '../../common/header/header.js';
-import axios from 'axios';
+import { obtenerSolicitudes, responderSolicitud } from '../../Logica/Solicitud/solicitudesService.js';
 
 const GestorSolicitudes = () => {
   const [solicitudes, setSolicitudes] = useState([]);
@@ -11,8 +11,8 @@ const GestorSolicitudes = () => {
   useEffect(() => {
     const fetchSolicitudes = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/solicitudes');
-        setSolicitudes(response.data);
+        const data = await obtenerSolicitudes();
+        setSolicitudes(data);
       } catch (error) {
         console.error('Error fetching solicitudes:', error);
       }
@@ -23,7 +23,7 @@ const GestorSolicitudes = () => {
 
   const handleRespuesta = async (id, aceptar) => {
     try {
-      await axios.post(`http://localhost:3001/responder-solicitud/${id}`, { aceptar });
+      await responderSolicitud(id, aceptar);
       alert('Solicitud procesada');
       // Actualizar el estado de las solicitudes para remover la solicitud procesada
       setSolicitudes(prevSolicitudes => prevSolicitudes.filter(solicitud => solicitud.ID !== id));

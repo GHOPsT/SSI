@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './globals.css';
 import './style.css';
 import { Link } from 'react-router-dom';
-import imagenes from "./imagenes"
+import imagenes from "./imagenes";
+import { registrarUsuario } from '../../Logica/Registro/registroService'; // Asegúrate de que la ruta sea correcta
 
 const Registrarse = () => {
   const [ID_Usuario, setUsuario] = useState('');
@@ -13,48 +14,54 @@ const Registrarse = () => {
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch('http://localhost:3001/registrarse', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ID_Usuario, Contrasenia , Nombre, Apellido, Email}),
-    });
-    const data = await response.json();
-    alert(data.message);
+    try {
+      const message = await registrarUsuario(ID_Usuario, Contrasenia, Nombre, Apellido, Email);
+      alert(message);
+    } catch (error) {
+      alert('Error en el registro');
+    }
   };
 
   return (
     <div className="registrarse">
       <div className="frame-wrapper">
-      <Link to="/iniciar-sesion" className='button-back'>
-        <div className="back-button-container">
-          <img src={imagenes.back} alt="Botón de regreso"/>
-        </div>
-      </Link>
+        <Link to="/iniciar-sesion" className='button-back'>
+          <div className="back-button-container">
+            <img src={imagenes.back} alt="Botón de regreso" />
+          </div>
+        </Link>
         <form className="frame" onSubmit={handleSubmit}>
+          <div className="text-wrapper">Registro</div>
+          <img className="line" src={imagenes.line} alt="line" />
 
-            <div className="text-wrapper">Registro</div>
-            <img className="line" src={imagenes.line} alt="line" />
-
-          <div className="div-wrapper"><div className="text-wrapper-2">Rellena los siguientes campos</div></div>
-          <div className="frame-2"><input
-            className="box-txt"
-            placeholder="Usuario"
-            value={ID_Usuario}
-            onChange={(e) => setUsuario(e.target.value)}/> 
+          <div className="div-wrapper">
+            <div className="text-wrapper-2">Rellena los siguientes campos</div>
+          </div>
+          <div className="frame-2">
+            <input
+              className="box-txt"
+              placeholder="Usuario"
+              value={ID_Usuario}
+              onChange={(e) => setUsuario(e.target.value)}
+            />
             <img className="img" src={imagenes.user} alt="img" />
           </div>
-          <div className="frame-2"><input
-            className="box-txt"
-            placeholder="Nombre"
-            value={Nombre}
-            onChange={(e) => setNombre_usuario(e.target.value)}
-          /> <img className="img" src={imagenes.user} alt="img" />
+          <div className="frame-2">
+            <input
+              className="box-txt"
+              placeholder="Nombre"
+              value={Nombre}
+              onChange={(e) => setNombre_usuario(e.target.value)}
+            />
+            <img className="img" src={imagenes.user} alt="img" />
           </div>
-          <div className="frame-2"><input
-            className="box-txt"
-            placeholder="Apellido"
-            value={Apellido}
-            onChange={(e) => setApellido(e.target.value)}/> 
+          <div className="frame-2">
+            <input
+              className="box-txt"
+              placeholder="Apellido"
+              value={Apellido}
+              onChange={(e) => setApellido(e.target.value)}
+            />
             <img className="img" src={imagenes.user} alt="img" />
           </div>
           <div className="frame-2">
@@ -72,11 +79,12 @@ const Registrarse = () => {
               className="box-txt"
               placeholder='Contraseña'
               value={Contrasenia}
-              onChange={(e) => setContrasena(e.target.value)}/>
-              <img className="img" src={imagenes.lock} alt="img" />
+              onChange={(e) => setContrasena(e.target.value)}
+            />
+            <img className="img" src={imagenes.lock} alt="img" />
           </div>
           <div className="frame-3">
-            <button type="submit" className="rectangle-2">Registrarse</button>        
+            <button type="submit" className="rectangle-2">Registrarse</button>
           </div>
         </form>
       </div>
